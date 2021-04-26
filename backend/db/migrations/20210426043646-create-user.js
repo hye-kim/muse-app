@@ -22,6 +22,12 @@ module.exports = {
         type: Sequelize.STRING.BINARY,
         allowNull: false,
       },
+      about: {
+        type: Sequelize.TEXT
+      },
+      picture: {
+        type: SEQUELIZE.STRING(256)
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
