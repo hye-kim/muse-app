@@ -5,9 +5,11 @@ const { User } = require('../../db/models');
 
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
+const poemsRouter = require('./poems.js');
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
+router.use('/poems', poemsRouter);
 
 router.get('/set-token-cookie', asyncHandler(async (req, res) => {
   const user = await User.findOne({

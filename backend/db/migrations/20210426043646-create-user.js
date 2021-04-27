@@ -26,7 +26,7 @@ module.exports = {
         type: Sequelize.TEXT
       },
       picture: {
-        type: SEQUELIZE.STRING(256)
+        type: Sequelize.STRING(256)
       },
       createdAt: {
         allowNull: false,
