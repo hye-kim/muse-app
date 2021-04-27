@@ -1,0 +1,45 @@
+.poem-body-background {
+    background-color: #f7f7f7;
+    padding-bottom: 50px;
+}
+
+.poem-body-container {
+    z-index: 3;
+    background-color: #fff;
+    position: relative;
+    display: flex;
+    margin: 0 auto;
+    max-width: 970px;
+    width: 100%;
+}
+
+.poem-main-body {
+    width: 58%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.poem-lyrics > h2 {
+    margin-top: 1rem;
+    color: #9a9a9a;
+    font-size: .75rem;
+    word-wrap: break-word;
+    word-break: break-word;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-right: .1em;
+    letter-spacing: .04em;
+}
+
+.lyrics {
+    word-wrap: break-word;
+    word-break: break-word;
+    line-height: 1.7em;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.lyrics > p {
+    margin: 1rem 0;
+    white-space: pre-line;
+}

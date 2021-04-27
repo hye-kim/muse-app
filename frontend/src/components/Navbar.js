@@ -1,12 +1,13 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { NavLink, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
-// import LoginFormModal from "../LoginFormModal";
 import "./stylesheets/Navbar.css";
+import * as sessionActions from "../store/session";
 
 function Navbar({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
+  const dispatch = useDispatch();
 
   let sessionLinks;
   if (sessionUser) {
@@ -18,7 +19,7 @@ function Navbar({ isLoaded }) {
           <NavLink to="/signup">Sign Up</NavLink>
           <NavLink to="/login">Sign In</NavLink>
           {/* <LoginFormModal /> */}
-          <NavLink to="">Demo</NavLink>
+          <Link to="" onClick={() => dispatch(sessionActions.loginDemo())}>Demo</Link>
         </div>
       </div>
     );
@@ -32,9 +33,9 @@ function Navbar({ isLoaded }) {
           <i className="fas fa-search"></i>
         </div>
       </form>
-        <NavLink exact to="/" activeClassName="" className="logo">
-          MUSE
-        </NavLink>
+      <NavLink exact to="/" activeClassName="" className="logo">
+        MUSE
+      </NavLink>
       {isLoaded && sessionLinks}
     </div>
   );

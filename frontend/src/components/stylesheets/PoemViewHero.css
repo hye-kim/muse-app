@@ -1,0 +1,146 @@
+.banner {
+  position: relative;
+  background-color: #000;
+  color: #fff;
+  background-position: center;
+  background-size: cover;
+}
+
+.banner::before {
+  animation: fade_in_background_image 0.75s both;
+  background: linear-gradient(to bottom,rgba(0,0,0,.4) 0,rgba(0,0,0,.65) 70%);
+  z-index: 0;
+  content: '';
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.banner-inner {
+  z-index: 4;
+  padding: 2.25rem 0 1.5rem 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  margin: 0 auto;
+  max-width: 970px;
+  position: relative;
+  width: 100%;
+}
+
+.banner-primary {
+  width: 58%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.header-image-container {
+  z-index: 1;
+  float: left;
+  margin-left: -2.25rem;
+  margin-right: 1rem;
+  position: relative;
+  width: 220px;
+}
+
+.header-image {
+  z-index: 3;
+  animation: position_stacked_album_art_0 backwards 0.4s;
+  animation-delay: -0.2s;
+  transform: translate3D(0, 0, 0);
+  outline: 0.15rem solid #9a9a9a;
+  left: 0;
+  top: 0;
+  transform-origin: top left;
+  transition: 0.2s transform;
+  background-color: #000;
+  width: 100%;
+  padding-bottom: 100%;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.header-image > img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.header-info-container {
+    display: flex;
+    margin-top: 1rem;
+    position: relative;
+}
+
+.header-info > h1 {
+    word-wrap: break-word;
+    word-break: break-word;
+    font-size: 2.25em;
+    line-height: 1.125;
+    font-weight: 500;
+    color: #ffff64;
+    margin-top: -.2em;
+    margin-bottom: 0;
+}
+
+.header-info > h2 {
+    margin: 0;
+}
+
+.header-info > h2 > a {
+    font-size: 1em;
+    line-height: 1.45;
+    font-weight: 400;
+    display: inline-block;
+    color: inherit;
+    margin-bottom: .25rem;
+    text-decoration: none;
+}
+
+.banner-secondary {
+    z-index: 1;
+    width: 42%;
+    position: relative;
+    padding-right: 1rem;
+    box-sizing: border-box;
+}
+
+.banner-secondary-content {
+    padding-left: 1.4rem;
+    height: 100%;
+}
+
+.banner-secondary-data {
+    position: absolute;
+    bottom: 0;
+    text-align: left;
+}
+
+.poem-view-count {
+    margin-left: .75rem;
+    display: inline-block;
+}
+
+.poem-view-count > svg {
+    fill: #9a9a9a;
+    display: inline;
+    height: .7em;
+    overflow: visible;
+    position: relative;
+    vertical-align: middle;
+}
+
+.poem-view-count > span {
+    color: #9a9a9a;
+    font-size: .75rem;
+    word-wrap: break-word;
+    word-break: break-word;
+    text-transform: uppercase;
+    margin-right: .1em;
+    letter-spacing: .04em;
+}

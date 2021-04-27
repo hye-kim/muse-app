@@ -22,7 +22,7 @@
 
 .sub-news-text {
   color: rgb(0, 0, 0);
-  font-weight: 100;
+  font-weight: 400;
   line-height: 1.125;
   height: 100%;
   min-height: inherit;
@@ -69,6 +69,10 @@
 .sub-news-date {
   font-size: 0.75rem;
   color: rgb(154, 154, 154);
+}
+
+.sub-news-author-date-container {
+  font-weight: 300;
 }
 
 .sub-news-image-container {

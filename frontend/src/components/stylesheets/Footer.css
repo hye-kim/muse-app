@@ -1,0 +1,78 @@
+.footer-container {
+  display: grid;
+  justify-content: center;
+  grid-template-columns:
+    [grid-start] repeat(3, minmax(14px, 44px)) [center-start] repeat(
+      6,
+      minmax(14px, 44px)
+    )
+    [center-end] repeat(3, minmax(14px, 44px)) [grid-end];
+  gap: 40px 60px;
+  background: rgb(18, 18, 18);
+  color: rgb(255, 255, 255);
+  padding: 4.5rem 60px 2.25rem;
+}
+
+.footer-left-text {
+  grid-column: span 6 / auto;
+}
+
+.footer-left-text > h1 {
+  font-size: 2.25rem;
+  font-weight: 300;
+  line-height: 1.125;
+  margin-bottom: 2.25rem;
+}
+
+.footer-social-links {
+  display: flex;
+  align-items: center;
+}
+
+.footer-social-links > a {
+  color: rgb(125, 143, 232);
+  text-decoration: none;
+  margin-right: 1.5rem;
+}
+
+.footer-social-links > a > svg {
+  display: block;
+  height: 22px;
+  fill: rgb(255, 255, 255);
+}
+
+.footer-right-1,
+.footer-right-2,
+.footer-right-4 {
+  grid-column: span 3 / auto;
+}
+
+.footer-right-1,
+.footer-right-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.footer-right-3 {
+  grid-column: 7 / span 3;
+}
+
+.footer-right-1 > a,
+.footer-right-2 > a,
+.footer-right-3 > a,
+.footer-right-4 > a {
+  text-decoration: none;
+  display: block;
+  color: inherit;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+.footer-right-3 > div,
+.footer-right-4 > a {
+    display: block;
+    color: rgb(154, 154, 154);
+    font-weight: 300;
+    font-size: 0.75rem;
+}

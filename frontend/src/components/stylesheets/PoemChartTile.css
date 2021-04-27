@@ -18,10 +18,14 @@
   text-decoration: none;
 }
 
+.poem-item:hover {
+  background: rgb(233, 233, 233);
+}
+
 .poem-rank {
   grid-column: span 1 / auto;
   font-size: 1.5rem;
-  font-weight: 100;
+  font-weight: 300;
   align-self: flex-start;
   margin-top: 20px;
   text-align: center;
@@ -78,10 +82,45 @@
 
 .poem-author {
   grid-column: span 3 / auto;
-  font-weight: 100;
+  font-weight: 300;
   overflow-wrap: break-word;
   word-break: break-word;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin: 0;
+}
+
+.poem-trending-views-container {
+  grid-column: span 3 / auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.poem-trending-views {
+  flex: 1 1 0%;
+  max-width: 50%;
+}
+
+.poem-views-container {
+  display: flex;
+  align-items: center;
+}
+
+.poem-views-icon {
+  width: 1rem;
+  margin-right: 0.5rem;
+  position: relative;
+  top: 0px;
+  flex-shrink: 0;
+}
+
+.poem-views-label {
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgb(0, 0, 0);
 }

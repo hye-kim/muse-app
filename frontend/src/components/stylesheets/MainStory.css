@@ -30,7 +30,6 @@
 .main-news-image {
   position: relative;
   padding-bottom: 56.25%;
-  background-image: url(https://i.pinimg.com/originals/d3/3e/27/d33e2775610d2e218135179066b722b4.jpg);
   background-size: contain;
   background-repeat: repeat;
   background-position: center;
@@ -63,16 +62,20 @@
 
 .main-news-title h2 {
   font-size: 100%;
-  font-weight: 100;
+  font-weight: 400;
 }
 
 .main-news-subtitle {
-  font-weight: 100;
+  font-weight: 300;
   margin-top: 8px;
 }
 
 .main-news-author {
   font-size: 0.75rem;
+}
+
+.main-news-author-date-container {
+  font-weight: 300;
 }
 
 .main-news-date {

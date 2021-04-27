@@ -1,0 +1,128 @@
+.poem-comments-vertical {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.poem-comments-container {
+  background-color: rgba(204, 204, 204, 0.35);
+  padding: 0.75rem;
+}
+
+.poem-comments-container > form {
+  margin-bottom: 1.313rem;
+}
+
+.poem-text-container > textarea {
+  background: #fff;
+  border: 0.15rem solid #ccc;
+  border-radius: 0;
+  color: #000;
+  font-size: inherit;
+  font-weight: 300;
+  line-height: inherit;
+  padding: 0.25rem;
+  resize: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.poem-text-container > textarea:focus {
+  box-shadow: #99a7ee 0 0 0.3em inset;
+  outline: 0;
+}
+
+.poem-form-vertical {
+  margin-bottom: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.poem-form-flex {
+  display: flex;
+  width: 100%;
+}
+
+.poem-text-container {
+  position: relative;
+  flex: 1;
+}
+
+.poem-form-button > button {
+  border-color: #0ecb27;
+  color: #0ecb27;
+  word-wrap: break-word;
+  word-break: break-word;
+  transition: background-color 0.3s, border-color 0.3s;
+  background-color: transparent;
+  border-width: 0.15rem;
+  border-style: solid;
+  border-radius: 0;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 1.4rem;
+  margin: 0;
+  text-align: center;
+  padding: 0.25rem 0.5rem;
+  vertical-align: top;
+}
+
+.poem-form-button > button:hover {
+  transition: none;
+  background-color: rgba(14, 203, 39, 0.2);
+}
+
+.actual-comment {
+  border-top: 1px solid #99a7ee;
+  display: block;
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+}
+
+.user-pic-timestamp-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-pic-timestamp {
+  overflow: hidden;
+  margin-right: 1rem;
+  box-sizing: border-box;
+}
+
+.user-pic-timestamp > a {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  line-height: 1;
+  position: relative;
+  text-decoration: none;
+}
+
+.user-pic {
+  height: 16px;
+  width: 16px;
+  min-width: 16px;
+  border-radius: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+.user-info {
+  margin-left: 0.4em;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.user-name-mu {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-mu {
+    color: #9a9a9a;
+    font-size: .7em;
+    letter-spacing: .05em;
+}

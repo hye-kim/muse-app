@@ -1,16 +1,47 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-scroll";
+import { useLocation, NavLink } from "react-router-dom";
 import "./stylesheets/SubNavbar.css";
 
 function SubNavbar() {
+  const location = useLocation();
+
+  let scrollLinks;
+  if (location.pathname === "/") {
+    scrollLinks = (
+      <>
+        <Link to="featured" smooth={true} duration={500}>
+          <span>Featured</span>
+        </Link>
+        <Link to="charts" smooth={true} duration={500}>
+          <span>Charts</span>
+        </Link>
+      </>
+    );
+  } else {
+    scrollLinks = (
+      <>
+        <NavLink to="/#featured">
+          {" "}
+          <span>Featured</span>
+        </NavLink>
+        <NavLink to="/#charts">
+          {" "}
+          <span>Charts</span>
+        </NavLink>
+      </>
+    );
+  }
+
   return (
     <div className="subnavbar">
-      <NavLink to="featured">
+      {/* <Link to="featured" smooth={true} duration={500}>
         <span>Featured</span>
-      </NavLink>
-      <NavLink to="charts">
+      </Link>
+      <Link to="charts" smooth={true} duration={500}>
         <span>Charts</span>
-      </NavLink>
+      </Link> */}
+      {scrollLinks}
       <a href="https://github.com/hye-kim/muse-app">
         <span>Github Repo</span>
       </a>

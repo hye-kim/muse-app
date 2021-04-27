@@ -33,7 +33,7 @@
   color: rgb(0, 0, 0);
   font-size: 5rem;
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 500;
   line-height: 1;
   text-align: center;
   letter-spacing: 2px;
@@ -49,7 +49,7 @@
 .charts-subtitle h3 {
   line-height: 1.45;
   font-size: 0.875rem;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -59,4 +59,36 @@
 
 .charts-poems {
   grid-column: grid-start / grid-end;
+}
+
+.charts-load-container {
+  grid-column: center-start / center-end;
+  text-align: center;
+}
+
+.charts-load {
+  border-color: rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+  overflow-wrap: break-word;
+  word-break: break-word;
+  transition: background-color 0.1s ease 0s, color 0.1s ease 0s;
+  background-color: transparent;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 0px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.875rem;
+  line-height: 1;
+  margin: 0px;
+  text-align: center;
+  padding: 0.75rem 1.313rem;
+  vertical-align: top;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.charts-load:hover {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }

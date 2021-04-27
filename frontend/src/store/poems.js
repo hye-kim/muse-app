@@ -1,42 +1,66 @@
-export const LOAD = "poems/LOAD";
+export const GET_ALL_POEMS = "poems/GET_ALL_POEMS";
+export const GET_POEM = "poems/GET_POEM";
 
-const load = (list) => ({
-  type: LOAD,
-  list,
+const getAllPoems = (poems) => ({
+  type: GET_ALL_POEMS,
+  poems,
 });
 
-// export const getOnePoem = (poemId) => async (dispatch) => {
-//   const res = await fetch(`/api/poems/${poemId}`);
+const getPoem = (poem) => ({
+  type: GET_POEM,
+  poem,
+});
 
-//   if (res.ok) {
-//     const poem = await res.json();
-//     dispatch(getPoem(poem));
-//     return poem;
-//   }
-// };
+export const getOnePoem = (poemId) => async (dispatch) => {
+  const res = await fetch(`/api/poems/${poemId}`);
+
+  if (res.ok) {
+    const poem = await res.json();
+    dispatch(getPoem(poem));
+    return poem;
+  }
+};
 
 export const getPoems = () => async (dispatch) => {
   const res = await fetch(`/api/poems/`);
 
   if (res.ok) {
-    const list = await res.json();
-    dispatch(load(list));
+    const poems = await res.json();
+    dispatch(getAllPoems(poems));
   }
 };
 
-const initialState = {};
+const initialState = {list: []};
+
+const sortPoems = (poems) => {
+  return poems
+    .sort((poemA, poemB) => {
+      return poemB.view_count - poemA.view_count;
+    })
+    .map((poem) => poem.id);
+};
 
 const poemReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOAD: {
+    case GET_ALL_POEMS: {
       const allPoems = {};
-      action.list.forEach((poem) => {
+      action.poems.forEach((poem) => {
         allPoems[poem.id] = poem;
-      })
+      });
       return {
         ...allPoems,
         ...state,
-      }
+        list: sortPoems(action.poems)
+      };
+    }
+    case GET_POEM: {
+      return {
+        ...state,
+        [action.poem.id]: {
+          ...state[action.poem.id],
+          ...action.poem,
+        },
+      };
     }
     default:
       return state;
