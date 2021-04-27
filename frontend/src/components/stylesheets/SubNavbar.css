@@ -1,0 +1,59 @@
+.subnavbar {
+  height: 41px;
+  background: rgb(18, 18, 18);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subnavbar > a {
+  height: 0.875rem;
+  padding: 0px 2.25rem;
+  line-height: 1;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  text-transform: uppercase;
+  border-right: 1px solid rgb(255, 255, 255);
+}
+
+.subnavbar > a > span {
+    white-space: nowrap;
+    position: relative;
+    top: -1px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+}
+
+
+.subnavbar-right {
+    height: 0.875rem;
+    padding: 0px 2.25rem;
+    line-height: 1;
+    color: rgb(255, 255, 255);
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+}
+
+.social-links > a {
+    height: 14px;
+    margin-right: 1.5rem;
+}
+
+.social-links > a > svg {
+    display: block;
+    height: 14px;
+    fill: rgb(255, 255, 255);
+}
+
+.social-links > a > i {
+    display: block;
+    height: 14px;
+    color: rgb(255, 255, 255);
+}

@@ -1,0 +1,15 @@
+.featured {
+  padding: 4.5rem 60px 0px;
+  background-color: rgb(255, 255, 255);
+}
+
+.featured-grid {
+  display: grid;
+  -webkit-box-pack: center;
+  justify-content: center;
+  grid-template-columns: [grid-start] repeat(3, minmax(14px, 44px)) [center-start] repeat(
+      6,
+      minmax(14px, 44px)
+    ) [center-end] repeat(3, minmax(14px, 44px)) [grid-end];
+  gap: 40px 60px;
+}

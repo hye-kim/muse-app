@@ -1,0 +1,40 @@
+.profile-button {
+  padding-right: 25px;
+}
+
+.dropdown-header {
+  padding: 0.75rem 1rem;
+  line-height: 1;
+}
+
+.dropdown-header > span {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgb(0, 0, 0);
+}
+
+.profile-dropdown {
+  z-index: 3;
+  position: absolute;
+  top: calc(41px + 1rem);
+  right: 1rem;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgb(0 0 0 / 20%) 0px 4px 8px;
+  max-height: calc((100vh - 41px) - 4.5rem);
+  overflow: hidden;
+  width: 210px;
+}
+
+.profile-dropdown > a {
+  padding: 0.75rem 1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: block;
+  color: rgb(0, 0, 0);
+  font-weight: 100;
+  font-size: 0.875rem;
+  border-top: 0.15rem solid rgb(233, 233, 233);
+}
