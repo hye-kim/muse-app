@@ -29,7 +29,7 @@ function Navbar({ isLoaded }) {
       <form action="/search" method="get" className="search">
         <input type="text" placeholder="Search poems & more" />
         <div>
-          <i class="fas fa-search"></i>
+          <i className="fas fa-search"></i>
         </div>
       </form>
         <NavLink exact to="/" activeClassName="" className="logo">

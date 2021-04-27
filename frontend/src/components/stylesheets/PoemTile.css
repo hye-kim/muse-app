@@ -1,0 +1,87 @@
+.poem-item {
+  display: grid;
+  justify-content: center;
+  grid-template-columns:
+    [grid-start] repeat(3, minmax(14px, 44px)) [center-start] repeat(
+      6,
+      minmax(14px, 44px)
+    )
+    [center-end] repeat(3, minmax(14px, 44px)) [grid-end];
+  gap: 40px 60px;
+  color: inherit;
+  width: 100%;
+  align-items: center;
+  grid-auto-rows: minmax(75px, auto);
+  border-bottom: 0.15rem solid rgb(233, 233, 233);
+  font-size: 1.5rem;
+  transition: background-color 0.1s ease 0s;
+  text-decoration: none;
+}
+
+.poem-rank {
+  grid-column: span 1 / auto;
+  font-size: 1.5rem;
+  font-weight: 100;
+  align-self: flex-start;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.poem-image-title-container {
+  grid-column: span 5 / auto;
+  display: flex;
+  align-items: center;
+}
+
+.poem-image-container {
+  flex-shrink: 0;
+}
+
+.poem-image {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: 0% 0% / cover rgb(233, 233, 233);
+}
+
+.poem-title-lyrics-container {
+  display: flex;
+  margin-left: 30px;
+  display: flex;
+  align-items: baseline;
+  overflow: hidden;
+  font-size: 100%;
+  font-weight: inherit;
+}
+
+.poem-title {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 0.5rem;
+}
+
+.poem-lyrics {
+  position: relative;
+  top: -2px;
+}
+
+.poem-lyrics > span {
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgb(154, 154, 154);
+}
+
+.poem-author {
+  grid-column: span 3 / auto;
+  font-weight: 100;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
