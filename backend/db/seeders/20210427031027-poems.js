@@ -153,7 +153,8 @@ module.exports = {
           arrayPoems.forEach((poem) => {
             const newPoem = {
               title: poem.title,
-              body: poem.lines,
+              body: poem.lines.join("\r\n"),
+              view_count: Math.floor(Math.random() * (100)),
               poet_id: i + 1,
               createdAt: new Date(),
               updatedAt: new Date(),

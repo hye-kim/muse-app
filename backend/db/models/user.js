@@ -25,9 +25,9 @@ module.exports = (sequelize, DataTypes) => {
           len: [3, 256],
           isEmail(value) {
             if (!Validator.isEmail(value)) {
-              throw new Error("Not a valid email.")
+              throw new Error("Not a valid email.");
             }
-          }
+          },
         },
       },
       hashedPassword: {
@@ -55,7 +55,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   User.associate = function (models) {
-    // associations can be defined here
+    User.hasMany(models.Comment, {
+      foreignKey: "user_id",
+      onDelete: "cascade",
+      hooks: true,
+    });
   };
 
   User.prototype.toSafeObject = function () {

@@ -14,7 +14,11 @@ module.exports = {
       },
       body: {
         allowNull: false,
-        type: Sequelize.ARRAY(Sequelize.TEXT)
+        type: Sequelize.TEXT
+      },
+      view_count: {
+        allowNull: false,
+        type: Sequelize.INTEGER
       },
       poet_id: {
         allowNull: false,

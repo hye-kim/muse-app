@@ -8,7 +8,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       body: {
-        type: DataTypes.ARRAY(DataTypes.TEXT),
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      view_count: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       poet_id: {
@@ -21,6 +25,11 @@ module.exports = (sequelize, DataTypes) => {
   );
   Poem.associate = function (models) {
     Poem.belongsTo(models.Poet, { foreignKey: "poet_id" });
+    Poem.hasMany(models.Comment, {
+      foreignKey: "poem_id",
+      onDelete: "cascade",
+      hooks: true,
+    });
   };
   return Poem;
 };
