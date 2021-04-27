@@ -25,7 +25,7 @@ function SubStory({ right, title, author, date, imgUrl, location }) {
               <span className="sub-news-date">{date}</span>
             </div>
             <div className="sub-news-image-container">
-              <div className="sub-news-image" style={{"background-image": `url(${imgUrl})`}}></div>
+              <div className="sub-news-image" style={{"backgroundImage": `url(${imgUrl})`}}></div>
             </div>
           </div>
         </a>

@@ -74,6 +74,12 @@ body {
   width: fit-content;
 }
 
+.login button:hover {
+  background-color: #333;
+  color: #e6e6e6;
+  cursor: pointer;
+}
+
 .callout {
   margin-top: 1rem;
   text-align: center;

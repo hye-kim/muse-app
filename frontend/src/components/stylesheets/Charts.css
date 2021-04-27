@@ -1,0 +1,62 @@
+.charts-container {
+  padding: 4.5rem 60px;
+  background-color: rgb(255, 255, 255);
+}
+
+.charts-grid {
+  display: grid;
+  justify-content: center;
+  grid-template-columns:
+    [grid-start] repeat(3, minmax(14px, 44px)) [center-start] repeat(
+      6,
+      minmax(14px, 44px)
+    )
+    [center-end] repeat(3, minmax(14px, 44px)) [grid-end];
+  gap: 40px 60px;
+}
+
+.charts-header {
+  display: grid;
+  justify-content: center;
+  grid-template-columns:
+    [grid-start] repeat(3, minmax(14px, 44px)) [center-start] repeat(
+      6,
+      minmax(14px, 44px)
+    )
+    [center-end] repeat(3, minmax(14px, 44px)) [grid-end];
+  column-gap: 60px;
+  grid-column: grid-start / grid-end;
+}
+
+.charts-title {
+  grid-column: grid-start / grid-end;
+  color: rgb(0, 0, 0);
+  font-size: 5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.charts-subtitle {
+  grid-column: center-start / center-end;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.charts-subtitle h3 {
+  line-height: 1.45;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgb(255, 20, 100);
+  margin: 0;
+}
+
+.charts-poems {
+  grid-column: grid-start / grid-end;
+}

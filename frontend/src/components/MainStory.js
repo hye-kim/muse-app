@@ -8,7 +8,7 @@ function MainStory() {
           <a href="https://www.nytimes.com/2017/01/19/nyregion/new-york-today-searching-for-poe.html">
             <div className="main-news-header">
               <div className="main-news-label">
-                <span font-weight="normal">news</span>
+                <span>news</span>
               </div>
               <div className="main-news-title">
                 <h2>New York Today: A Bird’s Eye View of Poe</h2>
