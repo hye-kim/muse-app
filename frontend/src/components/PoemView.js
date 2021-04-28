@@ -3,7 +3,7 @@ import PoemViewHero from "./PoemViewHero";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getOnePoem } from "../store/poems";
-import PoemBody from "./PoemViewBody";
+import PoemViewBody from "./PoemViewBody";
 
 function PoemView() {
   const { poemId } = useParams();
@@ -18,7 +18,7 @@ function PoemView() {
   return (
     <>
       <PoemViewHero poem={poem} />
-      <PoemBody poem={poem} />
+      <PoemViewBody poem={poem} />
     </>
   );
 }

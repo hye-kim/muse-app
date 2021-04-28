@@ -23,7 +23,7 @@ function PoemChartTile({ poem, rank }) {
       </div>
       <h4 className="poem-author">{poem.Poet.name}</h4>
       <div className="poem-trending-views-container">
-        <div class="poem-trending-views"></div>
+        <div className="poem-trending-views"></div>
         <div className="poem-trending-views">
           <div className="poem-views-container">
             <div className="poem-views-icon">

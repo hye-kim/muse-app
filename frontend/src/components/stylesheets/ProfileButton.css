@@ -2,6 +2,14 @@
   padding-right: 25px;
 }
 
+.profile-button-pic {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  background: 0% 0% / cover rgb(255, 255, 153);
+  border-radius: 50%;
+}
+
 .dropdown-header {
   padding: 0.75rem 1rem;
   line-height: 1;
@@ -17,7 +25,7 @@
 }
 
 .profile-dropdown {
-  z-index: 3;
+  z-index: 1000;
   position: absolute;
   top: calc(41px + 1rem);
   right: 1rem;

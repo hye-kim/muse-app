@@ -8,7 +8,10 @@ function Footer() {
   return (
     <div className="footer-container">
       <div className="footer-left-text">
-        <h1>Muse is App Academy's biggest collection of poem lyrics and poetry knowledge</h1>
+        <h1>
+          Muse is App Academy's biggest collection of poem lyrics and poetry
+          knowledge
+        </h1>
         <div className="footer-social-links">
           <a href="/">
             <svg viewBox="0 0 9.95 20">
@@ -49,7 +52,8 @@ function Footer() {
         <div>Developed by Hye Kim</div>
       </div>
       <div className="footer-right-4">
-        <a href="/static/terms">Not for commercial use</a>
+        <div>Not for commercial use</div>
+        <div>Poems provided by PoetryDB API</div>
       </div>
     </div>
   );

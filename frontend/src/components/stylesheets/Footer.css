@@ -70,7 +70,7 @@
 }
 
 .footer-right-3 > div,
-.footer-right-4 > a {
+.footer-right-4 > div {
     display: block;
     color: rgb(154, 154, 154);
     font-weight: 300;

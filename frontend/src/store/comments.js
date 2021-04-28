@@ -1,25 +1,18 @@
+import { csrfFetch } from "./csrf";
+
 export const GET_ALL_COMMENTS = "comments/GET_ALL_COMMENTS";
 export const GET_COMMENT = "comments/GET_COMMENT";
+const CREATE_COMMENT = "comments/CREATE_COMMENT";
 
 const getAllComments = (comments) => ({
   type: GET_ALL_COMMENTS,
   comments,
 });
 
-// const getComment = (comment) => ({
-//   type: GET_COMMENT,
-//   comment,
-// });
-
-// export const getOneComment = (poemId, commentId) => async (dispatch) => {
-//   const res = await fetch(`/api/poems/${poemId}`);
-
-//   if (res.ok) {
-//     const poem = await res.json();
-//     dispatch(getComment(poem));
-//     return poem;
-//   }
-// };
+export const createComment = (comment) => ({
+  type: CREATE_COMMENT,
+  comment,
+});
 
 export const getComments = (poemId) => async (dispatch) => {
   const res = await fetch(`/api/comments/${poemId}`);
@@ -30,12 +23,27 @@ export const getComments = (poemId) => async (dispatch) => {
   }
 };
 
+export const postComment = (payload) => async (dispatch) => {
+  const res = await csrfFetch(`/api/comments/${payload.poemId}`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (res.ok) {
+    const comment = await res.json();
+    dispatch(createComment(comment));
+  }
+};
+
 const initialState = { list: [] };
 
 const sortComments = (comments) => {
   return comments
     .sort((commentA, commentB) => {
-      return commentB.created_At - commentA.created_At;
+      return commentB.createdAt - commentA.createdAt;
     })
     .map((comment) => comment.id);
 };
@@ -53,15 +61,25 @@ const commentReducer = (state = initialState, action) => {
         list: sortComments(action.comments),
       };
     }
-    // case GET_POEM: {
-    //   return {
-    //     ...state,
-    //     [action.poem.id]: {
-    //       ...state[action.poem.id],
-    //       ...action.poem,
-    //     },
-    //   };
-    // }
+    case CREATE_COMMENT: {
+      if (!state[action.comment.id]) {
+        const newState = {
+          ...state,
+          [action.comment.id]: action.comment,
+        };
+        const commentList = newState.list.map((id) => newState[id]);
+        commentList.push(action.comment);
+        newState.list = sortComments(commentList);
+        return newState;
+      }
+      return {
+        ...state,
+        [action.comment.id]: {
+          ...state[action.comment.id],
+          ...action.comment,
+        },
+      };
+    }
     default:
       return state;
   }

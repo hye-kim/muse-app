@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../store/session";
 import "./stylesheets/ProfileButton.css";
@@ -30,24 +30,28 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout());
   };
 
+  let profilePic;
+
+  if (user.picture) {
+    profilePic = <div className="profile-button-pic" style={{ backgroundImage: `url(${user.picture})` }}></div>;
+  } else {
+    profilePic = <i className="fas fa-user-circle" />;
+  }
+
   return (
     <>
       <div className="profile-button">
         <div onClick={openMenu}>
-          <i className="fas fa-user-circle" />
+          {profilePic}
         </div>
       </div>
       {showMenu && (
         <div className="profile-dropdown">
-          <div class="dropdown-header">
+          <div className="dropdown-header">
             <span>Account</span>
           </div>
-          <Link to={`/users/${user.id}`}>
-            View Profile
-          </Link>
-          <Link onClick={logout}>
-            Sign Out
-          </Link>
+          <Link to={`/users/${user.id}`}>View Profile</Link>
+          <Link onClick={logout}>Sign Out</Link>
         </div>
       )}
     </>

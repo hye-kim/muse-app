@@ -79,9 +79,9 @@ function SignupFormPage() {
           />
           <button type="submit">Create Account</button>
         </form>
-        <p class="callout">
+        <p className="callout">
           Already have an account? {""}
-          <a href="/login" class="facebox" rel="nofollow">
+          <a href="/login">
             Sign in here.
           </a>
         </p>

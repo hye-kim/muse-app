@@ -1,0 +1,74 @@
+.comment-container {
+    border-top: 1px solid #99a7ee;
+    display: block;
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+  }
+
+.user-pic-timestamp-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-pic-timestamp {
+  overflow: hidden;
+  margin-right: 1rem;
+  box-sizing: border-box;
+}
+
+.user-pic-timestamp > a {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  line-height: 1;
+  position: relative;
+  text-decoration: none;
+}
+
+.user-pic {
+  height: 16px;
+  width: 16px;
+  min-width: 16px;
+  border-radius: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+.user-info {
+  margin-left: 0.4em;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.user-name-mu {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-mu {
+  color: #9a9a9a;
+  font-size: 0.7em;
+  letter-spacing: 0.05em;
+}
+
+.user-timestamp {
+  align-self: flex-start;
+  color: #9a9a9a;
+  font-size: 0.75em;
+  min-width: 5em;
+  text-align: right;
+}
+
+.comment-content {
+    word-wrap: break-word;
+    word-break: break-word;
+    font: 100 1em/1.45;
+}
+
+.comment-content > p {
+    margin: 1rem 0;
+    font-weight: 300;
+}

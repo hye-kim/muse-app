@@ -57,9 +57,9 @@ function LoginFormPage() {
           />
           <button type="submit">Login</button>
         </form>
-        <p class="callout">
+        <p className="callout">
           Don't have an account?{" "}
-          <a href="/login" class="facebox" rel="nofollow">
+          <a href="/login">
             Sign up here.
           </a>
         </p>
