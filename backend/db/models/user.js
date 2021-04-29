@@ -37,6 +37,12 @@ module.exports = (sequelize, DataTypes) => {
           len: [60, 60],
         },
       },
+      about: {
+        type: DataTypes.TEXT,
+      },
+      picture: {
+        type: DataTypes.STRING(256),
+      },
     },
     {
       defaultScope: {
@@ -55,7 +61,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   User.associate = function (models) {
-    User.hasMany(models.Comment, {
+    User.hasMany(models.PoemComment, {
       foreignKey: "user_id",
       onDelete: "cascade",
       hooks: true,

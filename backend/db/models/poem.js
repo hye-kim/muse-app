@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   Poem.associate = function (models) {
     Poem.belongsTo(models.Poet, { foreignKey: "poet_id" });
-    Poem.hasMany(models.Comment, {
+    Poem.hasMany(models.PoemComment, {
       foreignKey: "poem_id",
       onDelete: "cascade",
       hooks: true,

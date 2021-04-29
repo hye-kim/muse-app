@@ -23,7 +23,6 @@ router.get(
       include: [{model: Poet}]
     });
 
-
     poem.update({view_count: poem.view_count + 1})
 
     return res.json(poem);

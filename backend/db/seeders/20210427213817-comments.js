@@ -20,10 +20,10 @@ module.exports = {
       };
       comments.push(newComment);
     }
-    return queryInterface.bulkInsert("Comments", comments, {});
+    return queryInterface.bulkInsert("PoemComments", comments, {});
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete("Comments", null, {});
+    return queryInterface.bulkDelete("PoemComments", null, {});
   },
 };
