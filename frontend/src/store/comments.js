@@ -1,7 +1,6 @@
 import { csrfFetch } from "./csrf";
 
 export const GET_ALL_COMMENTS = "comments/GET_ALL_COMMENTS";
-export const GET_COMMENT = "comments/GET_COMMENT";
 const CREATE_COMMENT = "comments/CREATE_COMMENT";
 const DELETE_COMMENT = "comments/DELETE_COMMENT";
 
@@ -20,7 +19,6 @@ export const deleteComment = (commentId) => ({
   commentId
 })
 
-
 export const getComments = (poemId) => async (dispatch) => {
   const res = await fetch(`/api/comments/${poemId}`);
 
@@ -31,7 +29,7 @@ export const getComments = (poemId) => async (dispatch) => {
 };
 
 export const postComment = (payload) => async (dispatch) => {
-  const res = await csrfFetch(`/api/comments/${payload.poemId}`, {
+  const res = await csrfFetch(`/api/poems/${payload.poemId}/comments`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -45,8 +43,8 @@ export const postComment = (payload) => async (dispatch) => {
   }
 };
 
-export const destroyComment = (poemId, commentId) => async dispatch => {
-  const res = await csrfFetch(`/api/comments/${poemId}/${commentId}`, {
+export const destroyComment = (commentId) => async dispatch => {
+  const res = await csrfFetch(`/api/comments/${commentId}`, {
     method: "delete",
   })
 
