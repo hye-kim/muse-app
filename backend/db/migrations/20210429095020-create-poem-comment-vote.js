@@ -1,24 +1,26 @@
 "use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("PoemComments", {
+    return queryInterface.createTable("PoemCommentVotes", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      body: {
+      vote: {
         allowNull: false,
-        type: Sequelize.TEXT,
+        type: Sequelize.INTEGER,
       },
       user_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        references: { model: "Users" },
       },
-      poem_id: {
+      comment_id: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
+        references: { model: "PoemComments" },
       },
       createdAt: {
         allowNull: false,
@@ -31,6 +33,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("PoemComments");
+    return queryInterface.dropTable("PoemCommentVotes");
   },
 };

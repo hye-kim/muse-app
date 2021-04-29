@@ -1,7 +1,6 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-const { User } = require("../../db/models");
-const { PoemComment } = require("../../db/models");
+const { User, PoemComment, PoemCommentVote } = require("../../db/models");
 
 const router = express.Router();
 
@@ -19,36 +18,70 @@ router.get(
   })
 );
 
-router.post(
-  "/:poemId",
-  asyncHandler(async (req, res) => {
-    const { userId, body, poemId } = req.body;
-    const user = await User.findByPk(userId);
-
-    const newComment = await PoemComment.create({
-      body,
-      user_id: userId,
-      poem_id: poemId,
-    });
-
-    let data = {
-      ...newComment.toJSON(),
-      User: {
-        ...user.toJSON(),
-      },
-    };
-
-    return res.json(data);
-  })
-);
-
 router.delete(
-  "/:poemId/:commentId",
+  "/:commentId",
   asyncHandler(async (req, res) => {
     const comment = await PoemComment.findByPk(req.params.commentId);
 
     await comment.destroy();
-    return res.status(204).json({})
+    return res.status(204).json({});
+  })
+);
+
+router.get(
+  "/:commentId/votes",
+  asyncHandler(async (req, res) => {
+    const votes = await PoemCommentVote.findAll({
+      where: {
+        comment_id: req.params.commentId,
+      },
+    });
+
+    return res.json(votes);
+  })
+);
+
+router.post(
+  "/:commentId/votes",
+  asyncHandler(async (req, res) => {
+    const { userId, voteType } = req.body;
+    // const { userId } = req.body;
+
+    console.log("VOTE TYPE", voteType)
+
+    const vote = await PoemCommentVote.findOne({
+      where: {
+        comment_id: req.params.commentId,
+        user_id: userId,
+      },
+    });
+
+    if (vote == null && voteType === "upvote") {
+      // if (vote == null) {
+      const vote = await PoemCommentVote.create({
+        vote: 1,
+        user_id: userId,
+        comment_id: req.params.commentId,
+      });
+      return res.json(vote);
+      // }
+    } else if (vote == null && voteType === "downvote") {
+      const vote = await PoemCommentVote.create({
+        vote: -1,
+        user_id: userId,
+        comment_id: req.params.commentId,
+      });
+      return res.json(vote);
+    } else if (voteType === "upvote") {
+      // else {
+      let voteInt = vote.vote === 1 ? 0 : 1;
+      vote.update({ vote: voteInt });
+      return res.json(vote);
+    } else {
+      let voteInt = vote.vote === -1 ? 0 : -1;
+      vote.update({ vote: voteInt });
+      return res.json(vote);
+    }
   })
 );
 

@@ -15,7 +15,7 @@ module.exports = {
         user_id: Math.floor(Math.random() * numUsers + 1),
         body: faker.lorem.sentence(),
         poem_id: Math.floor(Math.random() * numPoems + 1),
-        createdAt: faker.date.recent(),
+        createdAt: faker.date.recent(60),
         updatedAt: new Date(),
       };
       comments.push(newComment);

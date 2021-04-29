@@ -149,19 +149,17 @@ module.exports = {
         const links = res.map((el) => {
           return el;
         });
-        links.forEach((arrayPoems, i) => {
-          arrayPoems.forEach((poem) => {
-            const newPoem = {
-              title: poem.title,
-              body: poem.lines.join("\r\n"),
-              view_count: Math.floor(Math.random() * (100)),
-              poet_id: i + 1,
-              createdAt: new Date(),
-              updatedAt: new Date(),
-            };
-            poems.push(newPoem);
-          });
-        });
+        for (let i = 0; i < links.length; i++) {
+          const newPoem = {
+            title: links[i][0].title,
+            body: links[i][0].lines.join("\n"),
+            view_count: Math.floor(Math.random() * 1000),
+            poet_id: i + 1,
+            createdAt: new Date(),
+            updatedAt: new Date()
+          }
+          poems.push(newPoem)
+        }
         resolve(queryInterface.bulkInsert("Poems", poems, {}));
       });
     });

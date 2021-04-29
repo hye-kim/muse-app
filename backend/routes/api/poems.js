@@ -1,7 +1,6 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-const { Poem } = require("../../db/models");
-const { Poet } = require("../../db/models");
+const { Poem, Poet, User, PoemComment } = require("../../db/models");
 
 const router = express.Router();
 
@@ -26,6 +25,29 @@ router.get(
     poem.update({view_count: poem.view_count + 1})
 
     return res.json(poem);
+  })
+);
+
+router.post(
+  "/:poemId/comments",
+  asyncHandler(async (req, res) => {
+    const { userId, body, poemId } = req.body;
+    const user = await User.findByPk(userId);
+
+    const newComment = await PoemComment.create({
+      body,
+      user_id: userId,
+      poem_id: poemId,
+    });
+
+    let data = {
+      ...newComment.toJSON(),
+      User: {
+        ...user.toJSON(),
+      },
+    };
+
+    return res.json(data);
   })
 );
 
