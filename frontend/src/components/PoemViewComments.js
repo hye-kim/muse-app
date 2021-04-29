@@ -8,9 +8,14 @@ import { useParams } from "react-router-dom";
 function PoemViewComments() {
   const { poemId } = useParams();
   const dispatch = useDispatch();
+
+  const [numComments, setNumComments] = useState(5);
+
   const comments = useSelector((state) => {
     return state.comment.list.map((commentId) => state.comment[commentId]);
   });
+
+  const sessionUser = useSelector((state) => state.session);
 
   const [body, setBody] = useState("");
 
@@ -20,11 +25,7 @@ function PoemViewComments() {
     dispatch(getComments(poemId));
   }, [dispatch, poemId]);
 
-  const commentComponents = comments.map((comment) => {
-    return <CommentContainer key={comment.id} comment={comment} />;
-  });
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const payload = {
@@ -34,33 +35,49 @@ function PoemViewComments() {
     };
 
     dispatch(postComment(payload));
-    setBody("")
+    setBody("");
   };
 
   return (
     <div className="poem-comments-vertical">
       <div className="poem-comments-container">
-        <form onSubmit={handleSubmit}>
-          <div className="poem-form-vertical">
-            <div className="poem-form-flex">
-              <div className="poem-text-container">
-                <textarea
-                  required
-                  placeholder="Add a comment"
-                  value={body}
-                  onChange={(e) => setBody(e.target.value)}
-                ></textarea>
+        {sessionUser.user && (
+          <form action="" onSubmit={handleSubmit}>
+            <div className="poem-form-vertical">
+              <div className="poem-form-flex">
+                <div className="poem-text-container">
+                  <textarea
+                    required
+                    placeholder="Add a comment"
+                    value={body}
+                    onChange={(e) => setBody(e.target.value)}
+                  ></textarea>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="poem-form-button">
-            <button type="submit">Submit</button>
-          </div>
-        </form>
+            <div className="poem-form-button">
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        )}
         <div className="poem-comments-list">
           <div className="individual-comment-container">
-            {commentComponents}
+            {comments.slice(0, numComments).map((comment) => (
+              <CommentContainer key={comment.id} comment={comment} />
+            ))}
           </div>
+          {comments.length > numComments ? (
+            <div style={{ marginTop: "1rem" }}>
+              <span
+                className="show-more-comments"
+                onClick={() => setNumComments(numComments + 5)}
+              >
+                Show More ({comments.length - numComments})
+              </span>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

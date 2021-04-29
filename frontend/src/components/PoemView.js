@@ -7,6 +7,7 @@ import PoemViewBody from "./PoemViewBody";
 
 function PoemView() {
   const { poemId } = useParams();
+  console.log("POEM ID", poemId);
   const dispatch = useDispatch();
   const poem = useSelector((state) => state.poem[poemId]);
 

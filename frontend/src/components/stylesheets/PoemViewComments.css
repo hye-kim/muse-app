@@ -70,3 +70,19 @@
   transition: none;
   background-color: rgba(14, 203, 39, 0.2);
 }
+
+.show-more-comments {
+  border-color: #99a7ee;
+  color: #99a7ee;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  cursor: pointer;
+  margin-right: .375rem;
+  padding-bottom: .1em;
+  word-wrap: break-word;
+  word-break: break-word;
+  text-transform: uppercase;
+  margin-right: .1em;
+  letter-spacing: .04em;
+  font-size: .875rem;
+}

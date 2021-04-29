@@ -20,7 +20,7 @@ function SubStory({ right, title, author, date, imgUrl, location }) {
             </div>
           </div>
           <div>
-            <div classNAme="sub-news-author-date-container">
+            <div className="sub-news-author-date-container">
               <span className="sub-news-author">{`by ${author} / `}</span>
               <span className="sub-news-date">{date}</span>
             </div>

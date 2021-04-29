@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 export const GET_ALL_COMMENTS = "comments/GET_ALL_COMMENTS";
 export const GET_COMMENT = "comments/GET_COMMENT";
 const CREATE_COMMENT = "comments/CREATE_COMMENT";
+const DELETE_COMMENT = "comments/DELETE_COMMENT";
 
 const getAllComments = (comments) => ({
   type: GET_ALL_COMMENTS,
@@ -13,6 +14,12 @@ export const createComment = (comment) => ({
   type: CREATE_COMMENT,
   comment,
 });
+
+export const deleteComment = (commentId) => ({
+  type: DELETE_COMMENT,
+  commentId
+})
+
 
 export const getComments = (poemId) => async (dispatch) => {
   const res = await fetch(`/api/comments/${poemId}`);
@@ -38,12 +45,22 @@ export const postComment = (payload) => async (dispatch) => {
   }
 };
 
+export const destroyComment = (poemId, commentId) => async dispatch => {
+  const res = await csrfFetch(`/api/comments/${poemId}/${commentId}`, {
+    method: "delete",
+  })
+
+  if (res.ok) {
+    dispatch(deleteComment(commentId))
+  }
+}
+
 const initialState = { list: [] };
 
 const sortComments = (comments) => {
   return comments
     .sort((commentA, commentB) => {
-      return commentB.createdAt - commentA.createdAt;
+      return new Date(commentB.createdAt) - new Date(commentA.createdAt);
     })
     .map((comment) => comment.id);
 };
@@ -79,6 +96,12 @@ const commentReducer = (state = initialState, action) => {
           ...action.comment,
         },
       };
+    }
+    case DELETE_COMMENT: {
+      const newState = {...state}
+      delete newState[action.commentId]
+      newState.list = newState.list.filter(id => id !== action.commentId)
+      return newState
     }
     default:
       return state;

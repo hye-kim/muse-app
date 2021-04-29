@@ -30,7 +30,7 @@ export const getPoems = () => async (dispatch) => {
   }
 };
 
-const initialState = {list: []};
+const initialState = { list: [] };
 
 const sortPoems = (poems) => {
   return poems
@@ -50,7 +50,7 @@ const poemReducer = (state = initialState, action) => {
       return {
         ...allPoems,
         ...state,
-        list: sortPoems(action.poems)
+        list: sortPoems(action.poems),
       };
     }
     case GET_POEM: {
