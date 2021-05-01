@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { destroyComment } from "../store/comments";
-import { postVote, getVotes } from "../store/votes";
+import { postVote, getVotes } from "../store/poemvotes";
 import "./stylesheets/CommentContainer.css";
 
 function CommentContainer({ comment }) {
   const sessionUser = useSelector((state) => state.session.user);
-  const votes = useSelector((state) => state.vote);
+  const votes = useSelector((state) => state.poemvote);
   const votesArray = Object.entries(votes).map((el) => el[1]);
   const votesSum = votesArray
     .filter((el) => el.comment_id === comment.id)
@@ -16,15 +16,15 @@ function CommentContainer({ comment }) {
 
   const hasUpvoted = votesArray.find(
     (el) =>
-      el.comment_id === comment.id &&
-      el.user_id === sessionUser.id &&
+      el.comment_id === comment?.id &&
+      el.user_id === sessionUser?.id &&
       el.vote > 0
   );
 
   const hasDownvoted = votesArray.find(
     (el) =>
-      el.comment_id === comment.id &&
-      el.user_id === sessionUser.id &&
+      el.comment_id === comment?.id &&
+      el.user_id === sessionUser?.id &&
       el.vote < 0
   );
 
@@ -42,6 +42,7 @@ function CommentContainer({ comment }) {
   };
 
   function handleVote(voteType) {
+    if (sessionUser == null) return;
     const payload = {
       userId: sessionUser.id,
       commentId: comment.id,

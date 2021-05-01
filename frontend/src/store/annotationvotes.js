@@ -1,20 +1,20 @@
 import { csrfFetch } from "./csrf";
 
-const VOTE_POEM_COMMENT = "votes/VOTE_POEM_COMMENT";
-const GET_ALL_VOTES_POEM_COMMENT = "votes/GET_VOTE_POEM_COMMENT";
+const VOTE_ANNOTATION = "votes/VOTE_ANNOTATION";
+const GET_ALL_VOTES_ANNOTATION = "votes/GET_VOTE_ANNOTATION";
 
 const createVote = (vote) => ({
-  type: VOTE_POEM_COMMENT,
+  type: VOTE_ANNOTATION,
   vote,
 });
 
 export const getAllVotes = (votes) => ({
-  type: GET_ALL_VOTES_POEM_COMMENT,
+  type: GET_ALL_VOTES_ANNOTATION,
   votes,
 });
 
 export const postVote = (payload) => async (dispatch) => {
-  const res = await csrfFetch(`/api/comments/${payload.commentId}/votes`, {
+  const res = await csrfFetch(`/api/annotations/${payload.annotationId}/votes`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -28,8 +28,8 @@ export const postVote = (payload) => async (dispatch) => {
   }
 };
 
-export const getVotes = (commentId) => async (dispatch) => {
-  const res = await fetch(`/api/comments/${commentId}/votes`);
+export const getVotes = (annotationId) => async (dispatch) => {
+  const res = await fetch(`/api/comments/${annotationId}/votes`);
 
   if (res.ok) {
     const votes = await res.json();
@@ -39,15 +39,15 @@ export const getVotes = (commentId) => async (dispatch) => {
 
 const initialState = {};
 
-const voteReducer = (state = initialState, action) => {
+const poemVoteReducer = (state = initialState, action) => {
   switch (action.type) {
-    case VOTE_POEM_COMMENT:
+    case VOTE_ANNOTATION:
       const newState = {
         ...state,
         [action.vote.id]: action.vote,
       };
       return newState;
-    case GET_ALL_VOTES_POEM_COMMENT: {
+    case GET_ALL_VOTES_ANNOTATION: {
       const allVotes = {};
       action.votes.forEach((vote) => {
         allVotes[vote.id] = vote;
@@ -62,4 +62,4 @@ const voteReducer = (state = initialState, action) => {
   }
 };
 
-export default voteReducer;
+export default poemVoteReducer;

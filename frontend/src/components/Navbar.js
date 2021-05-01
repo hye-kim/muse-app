@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import "./stylesheets/Navbar.css";
 import * as sessionActions from "../store/session";
+import NavSearchbar from "./NavSearchbar";
 
 function Navbar({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -27,12 +28,15 @@ function Navbar({ isLoaded }) {
 
   return (
     <div className="navbar">
-      <form action="/search" method="get" className="search">
-        <input type="text" placeholder="Search poems & more" />
-        <div>
-          <i className="fas fa-search"></i>
-        </div>
-      </form>
+      <NavSearchbar />
+      {/* <div>
+        <form action="/search" method="get" className="search">
+          <input type="text" placeholder="Search poems & more" />
+          <div>
+            <i className="fas fa-search"></i>
+          </div>
+        </form>
+      </div> */}
       <NavLink exact to="/" activeClassName="" className="logo">
         MUSE
       </NavLink>
