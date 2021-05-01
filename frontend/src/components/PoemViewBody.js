@@ -6,9 +6,9 @@ import {
   getAnnotations,
   postAnnotation,
   destroyAnnotation,
-  updateAnnotation
+  updateAnnotation,
 } from "../store/annotation";
-import { postVote } from "../store/annotationvotes";
+import { getVotes, postVote } from "../store/annotationvotes";
 import "./stylesheets/PoemViewBody.css";
 
 function PoemViewBody({ poem }) {
@@ -24,24 +24,30 @@ function PoemViewBody({ poem }) {
   const sessionUser = useSelector((state) => state.session.user);
   const { poemId } = useParams();
   const dispatch = useDispatch();
-  const annotations = useSelector((state) => {
+  const annotationsSorted = useSelector((state) => {
     return state.annotation.list.map(
       (annotationId) => state.annotation[annotationId]
     );
   });
 
+  const annotations = useSelector(state => state.annotation)
+
+  console.log(annotations)
+
   useEffect(() => {
     dispatch(getAnnotations(poemId));
   }, [dispatch, poemId]);
 
+  useEffect(() => {
+    dispatch(getVotes(currentAnnotationId))
+  }, [dispatch, currentAnnotationId])
+
   const votes = useSelector((state) => state.annotationvote);
   const votesArray = Object.entries(votes).map((el) => el[1]);
   const votesSum = votesArray
-    .filter((el) => el.annotation_id === annotations[currentAnnotationId]?.id)
+    .filter((el) => el.annotation_id === annotations[currentAnnotationId].id)
     .map((el) => el.vote)
     .reduce((a, b) => a + b, 0);
-
-  console.log(votesSum);
 
   const hasUpvoted = votesArray.find(
     (el) =>
@@ -121,7 +127,7 @@ function PoemViewBody({ poem }) {
     setEndPos(end);
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const payload = {
@@ -132,10 +138,11 @@ function PoemViewBody({ poem }) {
       endPos,
     };
 
-    dispatch(postAnnotation(payload));
+    const newAnnotation = await dispatch(postAnnotation(payload));
     setAnnotation("");
     setShowAnnotationForm(false);
     setShowAnnotationButton(false);
+    setCurrentAnnotationId(newAnnotation.id);
     setShowAnnotation(true);
   };
 
@@ -145,19 +152,19 @@ function PoemViewBody({ poem }) {
     const payload = {
       userId: sessionUser.id,
       body: annotation,
-      annotationId: annotations[currentAnnotationId].id
-    }
+      annotationId: annotations[currentAnnotationId].id,
+    };
     dispatch(updateAnnotation(payload));
     setAnnotation("");
-    setShowEditForm("")
-    setShowAnnotation(true)
-  }
+    setShowEditForm("");
+    setShowAnnotation(true);
+  };
 
   const createSections = () => {
     let str = poem?.body || "";
     let curIdx = 0;
     let lyrics = [];
-    annotations.forEach((annotation, i) => {
+    annotationsSorted.forEach((annotation, i) => {
       if (annotation.start_pos > curIdx) {
         lyrics.push(
           <span
@@ -174,9 +181,9 @@ function PoemViewBody({ poem }) {
           key={annotation.id}
           className="annotated"
           onClick={(e) => {
+            setCurrentAnnotationId(annotation.id);
             setShowAnnotation(true);
             setShowAnnotationButton(false);
-            setCurrentAnnotationId(i);
             setYOffset(e.pageY - 400);
           }}
         >
@@ -291,10 +298,14 @@ function PoemViewBody({ poem }) {
                           {annotations[currentAnnotationId].body}
                         </div>
                         <div className="annotation-edit_and_delete">
-                          <button onClick={() => {
-                            setShowEditForm(true)
-                            setAnnotation(annotations[currentAnnotationId].body)
-                            }}>
+                          <button
+                            onClick={() => {
+                              setShowEditForm(true);
+                              setAnnotation(
+                                annotations[currentAnnotationId].body
+                              );
+                            }}
+                          >
                             Edit
                           </button>
                           <button onClick={handleDelete}>Delete</button>
@@ -303,32 +314,32 @@ function PoemViewBody({ poem }) {
                     )}
                     {showEditForm && (
                       <form className="annotation-form" onSubmit={handleEdit}>
-                      <div className="annotation-form-textarea">
-                        <textarea
-                          value={annotation}
-                          onChange={(e) => setAnnotation(e.target.value)}
-                          rows="8"
-                        ></textarea>
-                      </div>
-                      <hr />
-                      <div className="annotation-form-buttons">
-                        <span>
-                          <button className="annotation-save" type="submit">
-                            Save
+                        <div className="annotation-form-textarea">
+                          <textarea
+                            value={annotation}
+                            onChange={(e) => setAnnotation(e.target.value)}
+                            rows="8"
+                          ></textarea>
+                        </div>
+                        <hr />
+                        <div className="annotation-form-buttons">
+                          <span>
+                            <button className="annotation-save" type="submit">
+                              Save
+                            </button>
+                          </span>
+                          <button
+                            className="annotation-cancel"
+                            onClick={(e) => {
+                              // e.preventDefault();
+                              setShowEditForm(false);
+                              setShowAnnotationButton(false);
+                            }}
+                          >
+                            Cancel
                           </button>
-                        </span>
-                        <button
-                          className="annotation-cancel"
-                          onClick={(e) => {
-                            // e.preventDefault();
-                            setShowEditForm(false);
-                            setShowAnnotationButton(false);
-                          }}
-                        >
-                          Cancel
-                        </button>
-                      </div>
-                    </form>
+                        </div>
+                      </form>
                     )}
                     <div className="annotation-votes-container">
                       <div className="annotations-votes">

@@ -40,6 +40,7 @@ export const postAnnotation = (payload) => async (dispatch) => {
   if (res.ok) {
     const annotation = await res.json();
     dispatch(createAnnotation(annotation));
+    return annotation;
   }
 };
 

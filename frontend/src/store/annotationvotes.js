@@ -29,7 +29,7 @@ export const postVote = (payload) => async (dispatch) => {
 };
 
 export const getVotes = (annotationId) => async (dispatch) => {
-  const res = await fetch(`/api/comments/${annotationId}/votes`);
+  const res = await fetch(`/api/annotations/${annotationId}/votes`);
 
   if (res.ok) {
     const votes = await res.json();
