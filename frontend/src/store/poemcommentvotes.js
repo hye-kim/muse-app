@@ -39,7 +39,7 @@ export const getVotes = (commentId) => async (dispatch) => {
 
 const initialState = {};
 
-const poemVoteReducer = (state = initialState, action) => {
+const poemCommentVoteReducer = (state = initialState, action) => {
   switch (action.type) {
     case VOTE_POEM_COMMENT:
       const newState = {
@@ -62,4 +62,4 @@ const poemVoteReducer = (state = initialState, action) => {
   }
 };
 
-export default poemVoteReducer;
+export default poemCommentVoteReducer;

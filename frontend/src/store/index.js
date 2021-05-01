@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import poemReducer from "./poems";
 import commentReducer from "./comments";
-import poemVoteReducer from "./poemvotes";
+import poemCommentVoteReducer from "./poemcommentvotes";
 import annotationReducer from "./annotation"
 import annotationVoteReducer from "./annotationvotes"
 
@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
   session: sessionReducer,
   poem: poemReducer,
   comment: commentReducer,
-  poemvote: poemVoteReducer,
+  poemcommentvote: poemCommentVoteReducer,
   annotation: annotationReducer,
   annotationvote: annotationVoteReducer
 });

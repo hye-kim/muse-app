@@ -16,8 +16,8 @@ export const createComment = (comment) => ({
 
 export const deleteComment = (commentId) => ({
   type: DELETE_COMMENT,
-  commentId
-})
+  commentId,
+});
 
 export const getComments = (poemId) => async (dispatch) => {
   const res = await fetch(`/api/comments/${poemId}`);
@@ -43,15 +43,15 @@ export const postComment = (payload) => async (dispatch) => {
   }
 };
 
-export const destroyComment = (commentId) => async dispatch => {
+export const destroyComment = (commentId) => async (dispatch) => {
   const res = await csrfFetch(`/api/comments/${commentId}`, {
     method: "delete",
-  })
+  });
 
   if (res.ok) {
-    dispatch(deleteComment(commentId))
+    dispatch(deleteComment(commentId));
   }
-}
+};
 
 const initialState = { list: [] };
 
@@ -96,10 +96,10 @@ const commentReducer = (state = initialState, action) => {
       };
     }
     case DELETE_COMMENT: {
-      const newState = {...state}
-      delete newState[action.commentId]
-      newState.list = newState.list.filter(id => id !== action.commentId)
-      return newState
+      const newState = { ...state };
+      delete newState[action.commentId];
+      newState.list = newState.list.filter((id) => id !== action.commentId);
+      return newState;
     }
     default:
       return state;

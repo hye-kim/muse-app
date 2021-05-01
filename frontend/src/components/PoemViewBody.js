@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import PoemViewComments from "./PoemViewComments";
-import { getAnnotations, postAnnotation } from "../store/annotation";
+import {
+  getAnnotations,
+  postAnnotation,
+  destroyAnnotation,
+  updateAnnotation
+} from "../store/annotation";
 import { postVote } from "../store/annotationvotes";
 import "./stylesheets/PoemViewBody.css";
 
@@ -10,6 +15,7 @@ function PoemViewBody({ poem }) {
   const [showAnnotationButton, setShowAnnotationButton] = useState(false);
   const [showAnnotationForm, setShowAnnotationForm] = useState(false);
   const [showAnnotation, setShowAnnotation] = useState(false);
+  const [showEditForm, setShowEditForm] = useState(false);
   const [annotation, setAnnotation] = useState("");
   const [currentAnnotationId, setCurrentAnnotationId] = useState(-1);
   const [yOffset, setYOffset] = useState(0);
@@ -24,10 +30,14 @@ function PoemViewBody({ poem }) {
     );
   });
 
+  useEffect(() => {
+    dispatch(getAnnotations(poemId));
+  }, [dispatch, poemId]);
+
   const votes = useSelector((state) => state.annotationvote);
   const votesArray = Object.entries(votes).map((el) => el[1]);
   const votesSum = votesArray
-    .filter((el) => el.annotation_id === annotations[currentAnnotationId].id)
+    .filter((el) => el.annotation_id === annotations[currentAnnotationId]?.id)
     .map((el) => el.vote)
     .reduce((a, b) => a + b, 0);
 
@@ -57,16 +67,17 @@ function PoemViewBody({ poem }) {
     dispatch(postVote(payload));
   }
 
-  useEffect(() => {
-    dispatch(getAnnotations(poemId));
-  }, [dispatch, poemId]);
+  const handleDelete = () => {
+    dispatch(destroyAnnotation(annotations[currentAnnotationId].id));
+    setShowAnnotation(false);
+  };
 
   const handleSelection = (e) => {
     e.preventDefault();
     setShowAnnotation(false);
     const selection = window.getSelection();
     const docFrag = selection.getRangeAt(0).cloneContents();
-    let containsAnchor = docFrag.querySelector("a") ? true : false;
+    let containsAnchor = docFrag.querySelector(".annotated") ? true : false;
 
     getHighlightPositions(
       document.getElementsByClassName("lyrics-container")[0]
@@ -123,9 +134,24 @@ function PoemViewBody({ poem }) {
 
     dispatch(postAnnotation(payload));
     setAnnotation("");
-    // setShowAnnotationForm(false);
-    // setShowAnnotationButton(false);
+    setShowAnnotationForm(false);
+    setShowAnnotationButton(false);
+    setShowAnnotation(true);
   };
+
+  const handleEdit = (e) => {
+    e.preventDefault();
+
+    const payload = {
+      userId: sessionUser.id,
+      body: annotation,
+      annotationId: annotations[currentAnnotationId].id
+    }
+    dispatch(updateAnnotation(payload));
+    setAnnotation("");
+    setShowEditForm("")
+    setShowAnnotation(true)
+  }
 
   const createSections = () => {
     let str = poem?.body || "";
@@ -259,13 +285,51 @@ function PoemViewBody({ poem }) {
                         by {annotations[currentAnnotationId].User.username}
                       </span>
                     </div>
-                    <div className="annotation-body">
-                      {annotations[currentAnnotationId].body}
-                    </div>
-                    <div className="annotation-edit_and_delete">
-                      <button>Edit</button>
-                      <button>Delete</button>
-                    </div>
+                    {!showEditForm && (
+                      <>
+                        <div className="annotation-body">
+                          {annotations[currentAnnotationId].body}
+                        </div>
+                        <div className="annotation-edit_and_delete">
+                          <button onClick={() => {
+                            setShowEditForm(true)
+                            setAnnotation(annotations[currentAnnotationId].body)
+                            }}>
+                            Edit
+                          </button>
+                          <button onClick={handleDelete}>Delete</button>
+                        </div>
+                      </>
+                    )}
+                    {showEditForm && (
+                      <form className="annotation-form" onSubmit={handleEdit}>
+                      <div className="annotation-form-textarea">
+                        <textarea
+                          value={annotation}
+                          onChange={(e) => setAnnotation(e.target.value)}
+                          rows="8"
+                        ></textarea>
+                      </div>
+                      <hr />
+                      <div className="annotation-form-buttons">
+                        <span>
+                          <button className="annotation-save" type="submit">
+                            Save
+                          </button>
+                        </span>
+                        <button
+                          className="annotation-cancel"
+                          onClick={(e) => {
+                            // e.preventDefault();
+                            setShowEditForm(false);
+                            setShowAnnotationButton(false);
+                          }}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </form>
+                    )}
                     <div className="annotation-votes-container">
                       <div className="annotations-votes">
                         <div

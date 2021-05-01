@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { destroyComment } from "../store/comments";
-import { postVote, getVotes } from "../store/poemvotes";
+import { postVote, getVotes } from "../store/poemcommentvotes";
 import "./stylesheets/CommentContainer.css";
 
 function CommentContainer({ comment }) {
   const sessionUser = useSelector((state) => state.session.user);
-  const votes = useSelector((state) => state.poemvote);
+  const votes = useSelector((state) => state.poemcommentvote);
   const votesArray = Object.entries(votes).map((el) => el[1]);
   const votesSum = votesArray
     .filter((el) => el.comment_id === comment.id)

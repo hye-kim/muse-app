@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const GET_ALL_ANNOTATIONS = "annotations/GET_ALL_ANNOTATIONS";
 const CREATE_ANNOTATION = "annotations/CREATE_ANNOTATION";
+const DELETE_ANNOTATION = "annotations/DELETE_COMMENT";
 
 const getAllAnnotations = (annotations) => ({
   type: GET_ALL_ANNOTATIONS,
@@ -11,6 +12,11 @@ const getAllAnnotations = (annotations) => ({
 const createAnnotation = (annotation) => ({
   type: CREATE_ANNOTATION,
   annotation,
+});
+
+const deleteAnnotation = (annotationId) => ({
+  type: DELETE_ANNOTATION,
+  annotationId,
 });
 
 export const getAnnotations = (poemId) => async (dispatch) => {
@@ -36,6 +42,30 @@ export const postAnnotation = (payload) => async (dispatch) => {
     dispatch(createAnnotation(annotation));
   }
 };
+
+export const destroyAnnotation = (annotationId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/annotations/${annotationId}`, {
+    method: "delete",
+  });
+
+  if (res.ok) {
+    dispatch(deleteAnnotation(annotationId));
+  }
+};
+
+export const updateAnnotation = (payload) => async dispatch => {
+  const {annotationId} = payload
+  const res = await csrfFetch(`/api/annotations/${annotationId}`, {
+    method: "put",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(payload)
+  })
+
+  if (res.ok) {
+    const annotation = await res.json()
+    dispatch(createAnnotation(annotation))
+  }
+}
 
 const initialState = { list: [] };
 
@@ -78,6 +108,12 @@ const annotationReducer = (state = initialState, action) => {
           ...action.annotation,
         },
       };
+    }
+    case DELETE_ANNOTATION: {
+      const newState = { ...state };
+      delete newState[action.annotationId];
+      newState.list = newState.list.filter((id) => id !== action.annotationId);
+      return newState;
     }
     default:
       return state;
