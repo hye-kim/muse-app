@@ -23,7 +23,7 @@ function NavSearchbar() {
     }
     if (e.target.value.length > 0) {
       let filteredResults = poems.filter((el) =>
-        el.title?.toLowerCase().includes(e.target.value)
+        el.title?.toLowerCase().includes(e.target.value) || el.Poet?.name.toLowerCase().includes(e.target.value)
       );
       setSearchInput(e.target.value);
       setSearchResults(filteredResults);
