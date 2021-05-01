@@ -32,8 +32,6 @@ function PoemViewBody({ poem }) {
 
   const annotations = useSelector(state => state.annotation)
 
-  console.log(annotations)
-
   useEffect(() => {
     dispatch(getAnnotations(poemId));
   }, [dispatch, poemId]);
@@ -41,6 +39,19 @@ function PoemViewBody({ poem }) {
   useEffect(() => {
     dispatch(getVotes(currentAnnotationId))
   }, [dispatch, currentAnnotationId])
+
+  document.querySelector(".annotation-body-container")?.addEventListener("click", (e) => {
+    if(e.target.classList.contains("annotation-flex")) {
+      setShowAnnotation(false)
+      setShowAnnotationButton(false)
+    }
+  })
+
+  document.querySelector(".poem-comments-container")?.addEventListener("click", (e) => {
+    setShowAnnotationButton(false)
+    setShowAnnotationForm(false)
+    setShowAnnotation(false)
+  })
 
   const votes = useSelector((state) => state.annotationvote);
   const votesArray = Object.entries(votes).map((el) => el[1]);
@@ -171,6 +182,9 @@ function PoemViewBody({ poem }) {
             key={`not-annotated-${i}`}
             className="not-annotated"
             onMouseUp={handleSelection}
+            onMouseDown={() => {
+              setShowAnnotationButton(false)
+            }}
           >
             {str.substring(curIdx, annotation.start_pos)}
           </span>
@@ -184,6 +198,8 @@ function PoemViewBody({ poem }) {
             setCurrentAnnotationId(annotation.id);
             setShowAnnotation(true);
             setShowAnnotationButton(false);
+            setShowAnnotationForm(false);
+            setShowEditForm(false)
             setYOffset(e.pageY - 400);
           }}
         >
@@ -214,7 +230,6 @@ function PoemViewBody({ poem }) {
             <div className="poem-lyrics">
               <h2>{poem.title} lyrics</h2>
               <div className="lyrics">
-                {/* <p onMouseUp={handleSelection}>{poem.body}</p> */}
                 <p className="lyrics-container">
                   {createSections().map((el) => el)}
                 </p>

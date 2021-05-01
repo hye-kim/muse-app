@@ -15,6 +15,8 @@ function PoemView() {
     dispatch(getOnePoem(poemId));
   }, [dispatch, poemId]);
 
+  document.title = `${poem?.Poet.name} - ${poem?.title} Lyrics`
+
   return (
     <>
       <PoemViewHero poem={poem} />
