@@ -30,6 +30,11 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "cascade",
       hooks: true,
     });
+    Poem.hasMany(models.Annotation, {
+      foreignKey: "poem_id",
+      onDelete: "cascade",
+      hooks: true,
+    });
   };
   return Poem;
 };

@@ -71,6 +71,11 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "cascade",
       hooks: true,
     });
+    User.hasMany(models.Annotation, {
+      foreignKey: "user_id",
+      onDelete: "cascade",
+      hooks: true,
+    });
   };
 
   User.prototype.toSafeObject = function () {

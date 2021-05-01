@@ -7,11 +7,13 @@ const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
 const poemsRouter = require("./poems.js");
 const commentsRouter = require("./comments.js");
+const annotationsRouter = require("./annotations.js")
 
 router.use("/session", sessionRouter);
 router.use("/users", usersRouter);
 router.use("/poems", poemsRouter);
 router.use("/comments", commentsRouter);
+router.use("/annotations", annotationsRouter);
 
 router.get(
   "/set-token-cookie",
