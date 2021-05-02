@@ -46,7 +46,7 @@ function NavSearchbar() {
           onChange={handleSearch}
           onFocus={() => setShowSearchResults(true)}
           onBlur={(e) => {
-              if(e.relatedTarget == null) {
+              if(e.relatedTarget == null || e.relatedTarget.tagName === "A") {
                   hideSearchResults()
               }
           }}
