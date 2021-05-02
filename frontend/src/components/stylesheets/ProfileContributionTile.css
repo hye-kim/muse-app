@@ -14,6 +14,17 @@
   flex: 1;
 }
 
+.tile-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tile-timestamp {
+  color: #9a9a9a;
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+
 .tile-content-target {
   margin-top: 0.25rem;
   font-weight: 600;
