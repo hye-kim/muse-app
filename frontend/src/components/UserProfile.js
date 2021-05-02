@@ -11,6 +11,7 @@ function UserProfile() {
   const { userId } = useParams();
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
+  const [numAnnotations, setNumAnnotations] = useState(5);
 
   const sessionUser = useSelector((state) => state.session.user);
   const user = useSelector((state) => state.user[userId]);
@@ -146,14 +147,27 @@ function UserProfile() {
               </div>
             )}
             {user?.Annotations.length > 0 &&
-              user.Annotations.map((annotation) => {
+              user.Annotations.slice(0, numAnnotations).map((annotation) => {
                 return (
-                  <ProfileContributionTile key={annotation.id}
+                  <ProfileContributionTile
+                    key={annotation.id}
                     annotation={annotation}
                     user={user}
                   />
                 );
               })}
+            <div className="annotations-load-container">
+              {user?.Annotations.length > numAnnotations ? (
+                <div
+                  className="annotations-load"
+                  onClick={() => setNumAnnotations(numAnnotations + 5)}
+                >
+                  Load More
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
           </div>
         </div>
       </div>

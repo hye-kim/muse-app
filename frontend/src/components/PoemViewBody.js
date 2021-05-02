@@ -30,28 +30,32 @@ function PoemViewBody({ poem }) {
     );
   });
 
-  const annotations = useSelector(state => state.annotation)
+  const annotations = useSelector((state) => state.annotation);
 
   useEffect(() => {
     dispatch(getAnnotations(poemId));
   }, [dispatch, poemId]);
 
   useEffect(() => {
-    dispatch(getVotes(currentAnnotationId))
-  }, [dispatch, currentAnnotationId])
+    dispatch(getVotes(currentAnnotationId));
+  }, [dispatch, currentAnnotationId]);
 
-  document.querySelector(".annotation-body-container")?.addEventListener("click", (e) => {
-    if(e.target.classList.contains("annotation-flex")) {
-      setShowAnnotation(false)
-      setShowAnnotationButton(false)
-    }
-  })
+  document
+    .querySelector(".annotation-body-container")
+    ?.addEventListener("click", (e) => {
+      if (e.target.classList.contains("annotation-flex")) {
+        setShowAnnotation(false);
+        setShowAnnotationButton(false);
+      }
+    });
 
-  document.querySelector(".poem-comments-container")?.addEventListener("click", (e) => {
-    setShowAnnotationButton(false)
-    setShowAnnotationForm(false)
-    setShowAnnotation(false)
-  })
+  document
+    .querySelector(".poem-comments-container")
+    ?.addEventListener("click", (e) => {
+      setShowAnnotationButton(false);
+      setShowAnnotationForm(false);
+      setShowAnnotation(false);
+    });
 
   const votes = useSelector((state) => state.annotationvote);
   const votesArray = Object.entries(votes).map((el) => el[1]);
@@ -183,7 +187,7 @@ function PoemViewBody({ poem }) {
             className="not-annotated"
             onMouseUp={handleSelection}
             onMouseDown={() => {
-              setShowAnnotationButton(false)
+              setShowAnnotationButton(false);
             }}
           >
             {str.substring(curIdx, annotation.start_pos)}
@@ -199,7 +203,7 @@ function PoemViewBody({ poem }) {
             setShowAnnotation(true);
             setShowAnnotationButton(false);
             setShowAnnotationForm(false);
-            setShowEditForm(false)
+            setShowEditForm(false);
             setYOffset(e.pageY - 400);
           }}
         >
@@ -302,9 +306,13 @@ function PoemViewBody({ poem }) {
                 >
                   <div className="annotation-unit">
                     <div className="annotation-label">
-                      <span>Muse Annotation </span>
+                      <span>Muse Annotation by </span>
                       <span className="annotation-label-underline">
-                        by {annotations[currentAnnotationId].User.username}
+                        <Link
+                          to={`/users/${annotations[currentAnnotationId].User.id}`}
+                        >
+                          {annotations[currentAnnotationId].User.username}
+                        </Link>
                       </span>
                     </div>
                     {!showEditForm && (

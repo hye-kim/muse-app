@@ -41,7 +41,7 @@ function SignupFormPage() {
       <div className="sign-up-container">
         <div className="sign-up-header">
           <h1>Sign up</h1>
-          <h2>and show off your genius</h2>
+          <h2>and show off your poetic genius</h2>
         </div>
         <form onSubmit={handleSubmit} className="sign-up">
           <ul style={displayErrors}>
