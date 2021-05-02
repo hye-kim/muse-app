@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getPoems } from "../store/poems";
+import { getAllUsers } from "../store/users";
 import "./stylesheets/NavSearchbar.css";
 
 function NavSearchbar() {
@@ -14,6 +15,7 @@ function NavSearchbar() {
 
   useEffect(() => {
     dispatch(getPoems());
+    dispatch(getAllUsers())
   }, [dispatch]);
 
   const handleSearch = (e) => {

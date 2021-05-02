@@ -266,6 +266,56 @@
   margin: 0.5rem 0;
 }
 
+.profile-contributions-dropdown {
+  float: right;
+}
+
+.profile-contributions-dropdown > span {
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-right: 0.1em;
+  letter-spacing: 0.04em;
+  font-size: 0.875rem;
+  color: #ff1464;
+}
+
+.profile-contributions-dropdown > svg {
+  top: -1px;
+  height: 0.35em;
+  fill: #ff1464;
+  display: inline;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0.25rem;
+  font-size: 0.875em;
+  z-index: 104;
+  animation: zoom_in 0.1s;
+  background: #fff;
+  border: 0.15rem solid #000;
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+  color: #000;
+  max-width: 400px;
+  min-width: 220px;
+  overflow: hidden;
+}
+
+.dropdown-menu > div {
+  display: flex;
+  align-items: center;
+  padding: .375rem;
+  color: inherit;
+  cursor: pointer;
+}
+
+.dropdown-menu > div:hover {
+  background: rgba(204,204,204,.2);
+}
+
 .profile-contributions > span {
   color: #9a9a9a;
   text-transform: uppercase;

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { getAllUsers } from "../store/users";
 import { Modal } from "../context/Modal";
 import ProfileContributionTile from "./ProfileContributionTile";
 import "./stylesheets/UserProfile.css";
@@ -9,21 +8,43 @@ import EditProfileForm from "./EditProfileForm";
 
 function UserProfile() {
   const { userId } = useParams();
-  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
-  const [numAnnotations, setNumAnnotations] = useState(5);
+  const [numContributions, setNumContributions] = useState(5);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [showAnnotations, setShowAnnotations] = useState(false);
+  const [showComments, setShowComments] = useState(false);
+  const [showContributions, setShowContributions] = useState(true);
 
   const sessionUser = useSelector((state) => state.session.user);
   const user = useSelector((state) => state.user[userId]);
-
-  useEffect(() => {
-    dispatch(getAllUsers());
-  }, [dispatch]);
 
   const handleCloseModal = (e) => {
     e.preventDefault();
     setShowModal(false);
   };
+
+  const openMenu = () => {
+    if (showDropdown) return;
+    setShowDropdown(true);
+  };
+
+  useEffect(() => {
+    if (!showDropdown) return;
+
+    const closeMenu = () => {
+      setShowDropdown(false);
+    };
+
+    document.addEventListener("click", closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showDropdown]);
+
+  const contributions = [...user.Annotations, ...user.PoemComments];
+
+  contributions.sort((contributionA, contributionB) => {
+    return new Date(contributionB.updatedAt) - new Date(contributionA.updatedAt)
+  })
 
   return (
     <div className="profile-page">
@@ -138,29 +159,111 @@ function UserProfile() {
         </div>
         <div className="column-secondary">
           <div className="profile-contributions">
-            <span>{`${user?.username}'s annotations`}</span>
+            <span>{`${user?.username}'s ${
+              showContributions
+                ? "contributions"
+                : showComments
+                ? "Comments"
+                : "Annotations"
+            }`}</span>
+            <div className="profile-contributions-dropdown" onClick={openMenu}>
+              <span>{`${
+                showContributions
+                  ? "All contributions"
+                  : showComments
+                  ? "Comments"
+                  : "Annotations"
+              }`}</span>
+              <svg
+                src="down_arrow.svg"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 21.32 10.91"
+              >
+                <path d="M10.66 10.91L0 1.5 1.32 0l9.34 8.24L20 0l1.32 1.5-10.66 9.41"></path>
+              </svg>
+              {showDropdown && (
+                <div className="dropdown-menu">
+                  {!showContributions && (
+                    <div
+                      onClick={() => {
+                        setShowContributions(true);
+                        setShowAnnotations(false);
+                        setShowComments(false);
+                      }}
+                    >
+                      All Contributions
+                    </div>
+                  )}
+                  <div
+                    onClick={() => {
+                      setShowAnnotations(true);
+                      setShowComments(false);
+                      setShowContributions(false);
+                    }}
+                  >
+                    Annotations
+                  </div>
+                  <div
+                    onClick={() => {
+                      setShowAnnotations(false);
+                      setShowComments(true);
+                      setShowContributions(false);
+                    }}
+                  >
+                    Comments
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
           <div className="profile-contributions-list">
-            {user?.Annotations.length === 0 && (
+            {contributions.length === 0 && (
               <div className="contributions-unit">
-                {`Looks like ${user.username} doesn't have any annotations.`}
+                {`Looks like ${user.username} doesn't have any contributions.`}
               </div>
             )}
-            {user?.Annotations.length > 0 &&
-              user.Annotations.slice(0, numAnnotations).map((annotation) => {
+            {contributions.length > 0 &&
+              showContributions &&
+              contributions.slice(0, numContributions).map((contribution) => {
                 return (
                   <ProfileContributionTile
-                    key={annotation.id}
-                    annotation={annotation}
+                    key={contribution.id}
+                    contribution={contribution}
                     user={user}
                   />
                 );
               })}
+            {contributions.length > 0 &&
+              showComments &&
+              user.PoemComments.slice(0, numContributions).map(
+                (contribution) => {
+                  return (
+                    <ProfileContributionTile
+                      key={contribution.id}
+                      contribution={contribution}
+                      user={user}
+                    />
+                  );
+                }
+              )}
+            {contributions.length > 0 &&
+              showAnnotations &&
+              user.Annotations.slice(0, numContributions).map(
+                (contribution) => {
+                  return (
+                    <ProfileContributionTile
+                      key={contribution.id}
+                      contribution={contribution}
+                      user={user}
+                    />
+                  );
+                }
+              )}
             <div className="annotations-load-container">
-              {user?.Annotations.length > numAnnotations ? (
+              {contributions.length > numContributions ? (
                 <div
                   className="annotations-load"
-                  onClick={() => setNumAnnotations(numAnnotations + 5)}
+                  onClick={() => setNumContributions(numContributions + 5)}
                 >
                   Load More
                 </div>

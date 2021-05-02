@@ -62,6 +62,12 @@ const userReducer = (state = initialState, action) => {
     case GET_ALL_USERS: {
       const allUsers = {};
       action.users.forEach((user) => {
+        user.Annotations.forEach(annotation => {
+          annotation["type"] = "annotation"
+        })
+        user.PoemComments.forEach(comment => {
+          comment["type"] = "comment"
+        })
         allUsers[user.id] = user;
       });
       return {

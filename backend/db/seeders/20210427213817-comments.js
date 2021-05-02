@@ -11,12 +11,13 @@ module.exports = {
     const numComments = numPoems * 3;
 
     for (let i = 0; i < numComments; i++) {
+      let newDate = faker.date.recent(60)
       let newComment = {
         user_id: Math.floor(Math.random() * numUsers + 1),
         body: faker.lorem.sentence(),
         poem_id: Math.floor(Math.random() * numPoems + 1),
-        createdAt: faker.date.recent(60),
-        updatedAt: new Date(),
+        createdAt: newDate,
+        updatedAt: newDate,
       };
       comments.push(newComment);
     }
