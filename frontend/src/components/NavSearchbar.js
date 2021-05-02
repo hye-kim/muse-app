@@ -14,8 +14,8 @@ function NavSearchbar() {
   const [showSearchResults, setShowSearchResults] = useState(false);
 
   useEffect(() => {
-    dispatch(getPoems());
     dispatch(getAllUsers())
+    dispatch(getPoems());
   }, [dispatch]);
 
   const handleSearch = (e) => {

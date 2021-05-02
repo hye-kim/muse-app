@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Modal } from "../context/Modal";
 import ProfileContributionTile from "./ProfileContributionTile";
 import "./stylesheets/UserProfile.css";
 import EditProfileForm from "./EditProfileForm";
+import { getAllUsers } from "../store/users";
 
 function UserProfile() {
   const { userId } = useParams();
@@ -17,6 +18,14 @@ function UserProfile() {
 
   const sessionUser = useSelector((state) => state.session.user);
   const user = useSelector((state) => state.user[userId]);
+
+  document.title = `${user.username} | Muse`;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, [dispatch]);
 
   const handleCloseModal = (e) => {
     e.preventDefault();
@@ -43,8 +52,10 @@ function UserProfile() {
   const contributions = [...user.Annotations, ...user.PoemComments];
 
   contributions.sort((contributionA, contributionB) => {
-    return new Date(contributionB.updatedAt) - new Date(contributionA.updatedAt)
-  })
+    return (
+      new Date(contributionB.updatedAt) - new Date(contributionA.updatedAt)
+    );
+  });
 
   return (
     <div className="profile-page">
@@ -260,7 +271,27 @@ function UserProfile() {
                 }
               )}
             <div className="annotations-load-container">
-              {contributions.length > numContributions ? (
+              {showContributions && contributions.length > numContributions ? (
+                <div
+                  className="annotations-load"
+                  onClick={() => setNumContributions(numContributions + 5)}
+                >
+                  Load More
+                </div>
+              ) : (
+                ""
+              )}
+              {showAnnotations && user.Annotations.length > numContributions ? (
+                <div
+                  className="annotations-load"
+                  onClick={() => setNumContributions(numContributions + 5)}
+                >
+                  Load More
+                </div>
+              ) : (
+                ""
+              )}
+              {showComments && user.PoemComments.length > numContributions ? (
                 <div
                   className="annotations-load"
                   onClick={() => setNumContributions(numContributions + 5)}

@@ -12,6 +12,24 @@ function Charts() {
     return state.poem.list.map((poemId) => state.poem[poemId]);
   });
 
+  let currentLocation = window.location.href;
+  const hasAnchor = currentLocation.includes("/#");
+  if (hasAnchor) {
+    const anchorId = `${currentLocation.substring(
+      currentLocation.indexOf("#") + 1
+    )}`;
+    console.log(anchorId);
+    const anchor = document.getElementById(anchorId);
+    console.log(anchor)
+    if (anchor) {
+      anchor.scrollIntoView({
+        block: "start",
+        inline: "nearest",
+        behavior: "smooth",
+      });
+    }
+  }
+
   useEffect(() => {
     dispatch(getPoems());
   }, [dispatch]);
