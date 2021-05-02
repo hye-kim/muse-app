@@ -130,6 +130,11 @@
   text-decoration: underline;
 }
 
+.annotation-label-underline > a,
+.annotation-label-underline > a:visited {
+  color: #000000;
+}
+
 .annotation-signup-button {
   border-color: #000;
   color: #000;
