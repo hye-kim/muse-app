@@ -29,8 +29,13 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Annotation.associate = function (models) {
-    Annotation.belongsTo(models.User, { foreignKey: "user_id"})
-    Annotation.belongsTo(models.Poem, { foreignKey: "poem_id"})
+    Annotation.belongsTo(models.User, { foreignKey: "user_id" });
+    Annotation.belongsTo(models.Poem, { foreignKey: "poem_id" });
+    Annotation.hasMany(models.AnnotationVote, {
+      foreignKey: "annotation_id",
+      onDelete: "cascade",
+      hooks: true,
+    });
   };
   return Annotation;
 };
