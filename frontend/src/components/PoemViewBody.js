@@ -119,22 +119,19 @@ function PoemViewBody({ poem }) {
   function getHighlightPositions(element) {
     let start = 0;
     let end = 0;
-    let doc = element.ownerDocument;
-    let win = doc.defaultView;
-    let sel;
 
-    if (typeof win.getSelection !== "undefined") {
-      sel = win.getSelection(); // highlighted selection object, reprsenting the range o text selected by user or current position of caret
+    if (typeof window.getSelection !== "undefined") {
+      const sel = window.getSelection(); // highlighted selection object, which represents the text selected by user
+      // if there is a range in the selection
       if (sel.rangeCount > 0) {
-        // "if there is a range" - rangeCount returns the number of ranges in the current selection
-        let range = win.getSelection().getRangeAt(0); // returns range object which contains startOffset and endOffset from selection
-        let preCaretRange = range.cloneRange(); // clone / duplicate the range, as to not directly affect the original range
+        let range = window.getSelection().getRangeAt(0); // returns a range object which contains the startOffset and endOffset
+        let preCaretRange = range.cloneRange(); // clone the range to not mutate the original range
 
-        preCaretRange.selectNodeContents(element); // sets the preCaretRange to contain the contents of the element. preCaretRange startOffset = 0, preCaretRange endOffset = the number of child nodes in the element (element is the reference node)
-        preCaretRange.setEnd(range.startContainer, range.startOffset); // setEnd sets the end position. first arg is the node in which the preCaretRange should end. second arg is an integer representing the offSet for the end of preCaretRange from start of first arg.
-        start = preCaretRange.toString().length; // returns the length of the preCaretRange => character count
-        preCaretRange.setEnd(range.endContainer, range.endOffset); // setEnd sets the end position of preCaretRange. first arg is the node in which the preCaretRange should end. second arg is an integer representing the offSet for the end of preCaretRange from start of first arg.
-        end = preCaretRange.toString().length; // returns the length of the preCaretRange => character count
+        preCaretRange.selectNodeContents(element); // sets the cloned range to contain the contents of the element, startOffset = 0, endOffset = the number of child nodes in the element
+        preCaretRange.setEnd(range.startContainer, range.startOffset); // sets the end position of the range to the number of characters from the start of the start container to the boundary point of the range
+        start = preCaretRange.toString().length; // sets the start position to the length of the range in string form
+        preCaretRange.setEnd(range.endContainer, range.endOffset); // sets the end position of the range to the number of characters from the start of the endContainer to the boundary point of the range
+        end = preCaretRange.toString().length; // sets the end position to the length of the range in string form
       }
     }
 
