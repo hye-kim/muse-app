@@ -12,7 +12,7 @@ function Footer() {
           Muse is App Academy's biggest collection of poem lyrics and poetry
           knowledge
         </h1>
-        <div className="footer-social-links">
+        {/* <div className="footer-social-links">
           <a href="/">
             <svg viewBox="0 0 9.95 20">
               <path d="M8.09 3.81c-1.4 0-1.58.84-1.58 1.67v1.3h3.35L9.49 11h-3v9H2.33v-9H0V6.88h2.42V3.81C2.42 1.3 3.81 0 6.6 0H10v3.81z"></path>
@@ -33,7 +33,7 @@ function Footer() {
               <path d="M19.81 3A4.32 4.32 0 0 0 19 1a2.86 2.86 0 0 0-2-.8C14.21 0 10 0 10 0S5.8 0 3 .2A2.87 2.87 0 0 0 1 1a4.32 4.32 0 0 0-.8 2S0 4.51 0 6.06V8a30 30 0 0 0 .2 3 4.33 4.33 0 0 0 .8 2 3.39 3.39 0 0 0 2.2.85c1.46.14 5.9.19 6.68.2h.4c1 0 4.35 0 6.72-.21a2.87 2.87 0 0 0 2-.84 4.32 4.32 0 0 0 .8-2 30.31 30.31 0 0 0 .2-3.21V6.28A30.31 30.31 0 0 0 19.81 3zM7.94 9.63V4l5.41 2.82z"></path>
             </svg>
           </a>
-        </div>
+        </div> */}
       </div>
       <div className="footer-right-1">
         <a href="https://github.com/hye-kim/muse-app/wiki">Muse Wiki</a>
