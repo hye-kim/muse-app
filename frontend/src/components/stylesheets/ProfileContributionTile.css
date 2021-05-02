@@ -1,0 +1,53 @@
+.profile-contribution-tile {
+  display: flex;
+  align-items: flex-start;
+  word-wrap: break-word;
+  word-break: break-word;
+  padding: 1rem;
+  margin-top: 0.5rem;
+  background: #fff;
+  color: #000;
+  text-decoration: none;
+}
+
+.tile-content {
+  flex: 1;
+}
+
+.tile-content-target {
+  margin-top: 0.25rem;
+  font-weight: 600;
+}
+
+.tile-content-text {
+  margin-top: 0.75rem;
+  word-wrap: break-word;
+  word-break: break-word;
+  background-color: #99a7ee;
+  border-radius: 1.3rem;
+  color: #fff;
+  display: inline-block;
+  font-size: 0.875em;
+  max-width: 100%;
+  min-width: 3rem;
+  padding: 0.65rem;
+  position: relative;
+}
+
+.tile-content-text::before {
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom-color: #99a7ee;
+  content: "";
+  margin-left: 0.5rem;
+  position: absolute;
+  bottom: 100%;
+}
+
+.tile-content-text > p {
+    margin: 0;
+}

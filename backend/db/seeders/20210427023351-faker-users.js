@@ -12,7 +12,7 @@ module.exports = {
       let newUser = {
         email: faker.internet.email(),
         username: faker.internet.userName(),
-        hashedPassword: bcrypt.hashSync(`Password${i + 21}!`, 10),
+        hashedPassword: bcrypt.hashSync(`Password${i + 1}!`, 10),
         about: faker.lorem.sentence(),
         picture: faker.image.avatar(),
         createdAt: faker.datatype.datetime(),

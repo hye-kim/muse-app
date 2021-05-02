@@ -3,7 +3,7 @@ const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User } = require("../../db/models");
+const { User, Annotation, PoemComment } = require("../../db/models");
 
 const router = express.Router();
 
@@ -24,6 +24,17 @@ const validateSignup = [
   handleValidationErrors,
 ];
 
+router.get(
+  "",
+  asyncHandler(async (req, res) => {
+    const users = await User.findAll({
+      include: [{ model: Annotation }, { model: PoemComment }],
+      order: [[Annotation, "updatedAt", "DESC"]],
+    });
+    return res.json(users);
+  })
+);
+
 router.post(
   "",
   validateSignup,
@@ -36,6 +47,33 @@ router.post(
     return res.json({
       user,
     });
+  })
+);
+
+router.get(
+  "/:userId",
+  asyncHandler(async (req, res) => {
+    const user = await User.findByPk(req.params.userId, {
+      include: [{ model: Annotation }, { model: PoemComment }],
+    });
+    return res.json(user);
+  })
+);
+
+router.put(
+  "/:userId",
+  asyncHandler(async (req, res) => {
+    const { about, picture } = req.body;
+
+    const user = await User.findByPk(req.params.userId, {
+      include: [{ model: Annotation }, { model: PoemComment }],
+    });
+
+    user.update({
+      about,
+      picture,
+    });
+    return res.json(user);
   })
 );
 

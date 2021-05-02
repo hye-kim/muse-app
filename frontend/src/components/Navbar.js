@@ -20,7 +20,15 @@ function Navbar({ isLoaded }) {
           <NavLink to="/signup">Sign Up</NavLink>
           <NavLink to="/login">Sign In</NavLink>
           {/* <LoginFormModal /> */}
-          <Link to="" onClick={() => dispatch(sessionActions.loginDemo())}>Demo</Link>
+          <Link
+            to="/"
+            onClick={(e) => {
+              e.preventDefault();
+              dispatch(sessionActions.loginDemo());
+            }}
+          >
+            Demo
+          </Link>
         </div>
       </div>
     );

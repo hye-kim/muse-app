@@ -48,8 +48,8 @@ const poemReducer = (state = initialState, action) => {
         allPoems[poem.id] = poem;
       });
       return {
-        ...allPoems,
         ...state,
+        ...allPoems,
         list: sortPoems(action.poems),
       };
     }

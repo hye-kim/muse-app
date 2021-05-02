@@ -23,10 +23,12 @@ module.exports = {
       user_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        references: { model: "Users" },
       },
       poem_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        references: { model: "Poems" },
       },
       createdAt: {
         allowNull: false,

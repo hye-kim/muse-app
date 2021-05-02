@@ -45,9 +45,6 @@ router.post(
   "/:commentId/votes",
   asyncHandler(async (req, res) => {
     const { userId, voteType } = req.body;
-    // const { userId } = req.body;
-
-    console.log("VOTE TYPE", voteType)
 
     const vote = await PoemCommentVote.findOne({
       where: {

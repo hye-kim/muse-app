@@ -9,6 +9,7 @@ import LoginFormPage from "./components/LoginForm";
 import Splash from "./components/Splash";
 import Footer from "./components/Footer";
 import PoemView from "./components/PoemView";
+import UserProfile from "./components/UserProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
           <Route path="/signup" component={SignupFormPage} />
           <Route path="/login" component={LoginFormPage} />
           <Route exact path="/poems/:poemId" component={PoemView} />
+          <Route exact path="/users/:userId" component={UserProfile} />
         </Switch>
       )}
       <Footer />

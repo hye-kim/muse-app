@@ -19,7 +19,7 @@ router.get(
 );
 
 router.post(
-  "/:poemId",
+  "/",
   asyncHandler(async (req, res) => {
     const { userId, body, poemId, startPos, endPos } = req.body;
     const user = await User.findByPk(userId);
@@ -44,9 +44,10 @@ router.post(
 );
 
 router.delete(
-  "/:annotationId",
+  "/",
   asyncHandler(async (req, res) => {
-    const annotation = await Annotation.findByPk(req.params.annotationId);
+    const { annotationId } = req.body;
+    const annotation = await Annotation.findByPk(annotationId);
 
     await annotation.destroy();
     return res.status(204).json({});
@@ -54,10 +55,10 @@ router.delete(
 );
 
 router.put(
-  "/:annotationId",
+  "",
   asyncHandler(async (req, res) => {
-    const { body, userId } = req.body;
-    const annotation = await Annotation.findByPk(req.params.annotationId);
+    const { body, userId, annotationId } = req.body;
+    const annotation = await Annotation.findByPk(annotationId);
     const user = await User.findByPk(userId);
 
     annotation.update({
@@ -65,13 +66,13 @@ router.put(
     });
 
     let data = {
-        ...annotation.toJSON(),
-        User: {
-          ...user.toJSON(),
-        },
-      };
+      ...annotation.toJSON(),
+      User: {
+        ...user.toJSON(),
+      },
+    };
 
-      return res.json(data);
+    return res.json(data);
   })
 );
 
@@ -92,9 +93,6 @@ router.post(
   "/:annotationId/votes",
   asyncHandler(async (req, res) => {
     const { userId, voteType } = req.body;
-    // const { userId } = req.body;
-
-    console.log("VOTE TYPE", voteType);
 
     const vote = await AnnotationVote.findOne({
       where: {

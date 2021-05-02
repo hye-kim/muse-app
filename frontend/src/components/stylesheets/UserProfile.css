@@ -1,0 +1,277 @@
+.profile-page {
+  background-color: #f7f7f7;
+  padding-bottom: 1rem;
+}
+
+.profile-header {
+  max-height: 18em;
+  color: #fff;
+  height: 28vw;
+  min-height: 4em;
+  background-color: #000;
+  position: relative;
+}
+
+.banner-container {
+  opacity: 0.8;
+  position: absolute;
+  z-index: 0;
+  height: 100%;
+  min-width: 100%;
+  top: 0;
+  overflow: hidden;
+}
+
+.banner-container::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 70%,
+    rgba(0, 0, 0, 0.7) 93%,
+    #000 99%
+  );
+  z-index: 0;
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.banner-image {
+  background-position: center;
+  background-size: cover;
+  filter: blur(2px);
+  z-index: -1;
+  position: absolute;
+  overflow: hidden;
+  top: -1rem;
+  right: -1rem;
+  bottom: -1rem;
+  left: -1rem;
+}
+
+.column-layout {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 970px;
+  position: relative;
+  width: 100%;
+}
+
+.column-primary {
+  z-index: 1;
+  width: 42%;
+  position: relative;
+  padding-right: 1rem;
+}
+
+.user-avatar {
+  max-height: 18em;
+  max-width: 18em;
+  left: 0;
+  margin: 0 auto;
+  border-radius: 100%;
+  width: 28vw;
+  height: 28vw;
+  min-height: 4em;
+  min-width: 4em;
+  top: 3vw;
+  position: relative;
+  border: 2px solid #fff;
+  background-position: center;
+  background-size: cover;
+}
+
+.column-secondary {
+  width: 58%;
+  padding: 0 1rem;
+}
+
+.profile-body {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 970px;
+  position: relative;
+  width: 100%;
+}
+
+.profile-description {
+  padding-top: 5vw;
+  padding-bottom: 1rem;
+}
+
+.profile-identity {
+  line-height: 1;
+  text-align: center;
+}
+
+.profile-identity > h1 {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-bottom: 0.125rem;
+  margin-top: 0;
+}
+
+.profile-edit {
+  text-align: center;
+  margin: 0.8rem 0;
+}
+
+.profile-edit-button {
+  margin-top: 0.5rem;
+  border-color: #000;
+  color: #000;
+  word-wrap: break-word;
+  word-break: break-word;
+  transition: background-color 0.3s, border-color 0.3s;
+  background-color: transparent;
+  border-width: 0.15rem;
+  border-style: solid;
+  border-radius: 0;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 1.4rem;
+  margin: 0;
+  text-align: center;
+  padding: 0.25rem 0.5rem;
+  vertical-align: top;
+}
+
+.profile-edit-button:hover {
+  transition: none;
+  background-color: rgba(204, 204, 204, 0.2);
+}
+
+.profile-edit-button > svg {
+  fill: #000;
+  top: -1px;
+  height: 1em;
+  display: inline;
+  overflow: visible;
+  position: relative;
+  vertical-align: middle;
+}
+
+.profile-about-container {
+  margin-top: 1rem;
+}
+
+.profile-about {
+  background-color: #fff;
+  padding: 1rem;
+}
+
+.profile-about > span {
+  font-weight: 300;
+}
+
+.profile-about > form > textarea {
+  background-color: rgba(204, 204, 204, 0.35);
+  width: 100%;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  border: none;
+  color: inherit;
+  display: block;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 300;
+  line-height: inherit;
+  padding: 0;
+  resize: none;
+  overflow: hidden;
+  box-sizing: content-box;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+  padding: 0.5rem;
+  resize: none;
+}
+
+.profile-about > form > textarea:focus {
+  box-shadow: #99a7ee 0 0 0.3em inset;
+  outline: 0;
+}
+
+.profile-stats-label {
+  margin: 1rem;
+  color: #9a9a9a;
+  word-wrap: break-word;
+  word-break: break-word;
+  text-transform: uppercase;
+  margin-right: 0.1em;
+  letter-spacing: 0.04em;
+  font-size: 0.875rem;
+}
+
+.profile-stats {
+  margin: 1rem 0;
+}
+
+.stats-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 1em;
+  background: #fff;
+}
+
+.stats {
+  min-width: 100px;
+  margin: 0.5rem 0;
+}
+
+.stat-and-label {
+  text-align: center;
+}
+
+.stat-and-label-primary {
+  font-size: 1.4em;
+  font-weight: 500;
+}
+
+.stat-and-label-primary > svg {
+  margin-top: -0.2em;
+  top: 1px;
+  height: 1em;
+  display: inline;
+  fill: #000;
+  overflow: visible;
+  position: relative;
+  vertical-align: middle;
+}
+
+.stat-and-label-primary > span {
+  margin-left: 0.25rem;
+}
+
+.stat-and-label-subtext {
+  color: #666;
+  font-size: 0.6em;
+  letter-spacing: 0.05em;
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+}
+
+.profile-contributions {
+    margin-top: 1.5rem;
+    padding: 0.5rem 0.25rem;
+    word-wrap: break-word;
+    word-break: break-word;
+    border-bottom: 1px solid #e9e9e9;
+    overflow: hidden;
+    margin: .5rem 0;
+}
+
+.profile-contributions > span {
+    color: #9a9a9a;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.profile-contributions-list {
+    margin-top: 1rem;
+}

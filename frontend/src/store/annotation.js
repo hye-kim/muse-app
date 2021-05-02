@@ -29,7 +29,7 @@ export const getAnnotations = (poemId) => async (dispatch) => {
 };
 
 export const postAnnotation = (payload) => async (dispatch) => {
-  const res = await csrfFetch(`/api/annotations/${payload.poemId}`, {
+  const res = await csrfFetch(`/api/annotations`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -45,8 +45,9 @@ export const postAnnotation = (payload) => async (dispatch) => {
 };
 
 export const destroyAnnotation = (annotationId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/annotations/${annotationId}`, {
+  const res = await csrfFetch(`/api/annotations`, {
     method: "delete",
+    body: JSON.stringify({annotationId})
   });
 
   if (res.ok) {
@@ -55,8 +56,7 @@ export const destroyAnnotation = (annotationId) => async (dispatch) => {
 };
 
 export const updateAnnotation = (payload) => async dispatch => {
-  const {annotationId} = payload
-  const res = await csrfFetch(`/api/annotations/${annotationId}`, {
+  const res = await csrfFetch(`/api/annotations/`, {
     method: "put",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(payload)
@@ -86,8 +86,8 @@ const annotationReducer = (state = initialState, action) => {
         allAnnotations[annotation.id] = annotation;
       });
       return {
-        ...allAnnotations,
         ...state,
+        ...allAnnotations,
         list: sortAnnotations(action.annotations),
       };
     }

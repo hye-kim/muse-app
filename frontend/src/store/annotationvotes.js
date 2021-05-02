@@ -53,8 +53,8 @@ const poemCommentVoteReducer = (state = initialState, action) => {
         allVotes[vote.id] = vote;
       });
       return {
-        ...allVotes,
         ...state,
+        ...allVotes,
       };
     }
     default:

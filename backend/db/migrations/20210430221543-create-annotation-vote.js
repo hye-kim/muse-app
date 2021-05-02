@@ -20,7 +20,7 @@ module.exports = {
       annotation_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: { model: "PoemComments" },
+        references: { model: "Annotations" },
       },
       createdAt: {
         allowNull: false,

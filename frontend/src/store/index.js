@@ -6,6 +6,7 @@ import commentReducer from "./comments";
 import poemCommentVoteReducer from "./poemcommentvotes";
 import annotationReducer from "./annotation"
 import annotationVoteReducer from "./annotationvotes"
+import userReducer from "./users";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   comment: commentReducer,
   poemcommentvote: poemCommentVoteReducer,
   annotation: annotationReducer,
-  annotationvote: annotationVoteReducer
+  annotationvote: annotationVoteReducer,
+  user: userReducer
 });
 
 let enhancer;
