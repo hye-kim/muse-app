@@ -30,7 +30,7 @@ Users can add annotations to poem lyrics by highlighting lyrics.
 
 Annotations are stored via start and end indices of the original poem body. Obtaining the position of the selection is based off of the `Selection` and `Range` Web APIs and interfaces
 
-```
+```js
 function getHighlightPositions(element) {
     let start = 0;
     let end = 0;

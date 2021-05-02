@@ -40,14 +40,14 @@ function PoemViewBody({ poem }) {
     dispatch(getVotes(currentAnnotationId));
   }, [dispatch, currentAnnotationId]);
 
-  document
-    .querySelector(".annotation-body-container")
-    ?.addEventListener("click", (e) => {
-      if (e.target.classList.contains("annotation-flex")) {
-        setShowAnnotation(false);
-        setShowAnnotationButton(false);
-      }
-    });
+  function hide(e) {
+    if (e.target !== this) return;
+    setShowAnnotationButton(false);
+    setShowAnnotationForm(false);
+    setShowAnnotation(false);
+  }
+
+  document.querySelector(".lyrics-container")?.addEventListener("click", hide);
 
   document
     .querySelector(".poem-comments-container")
@@ -56,6 +56,12 @@ function PoemViewBody({ poem }) {
       setShowAnnotationForm(false);
       setShowAnnotation(false);
     });
+
+  document
+    .querySelector(".poem-body-background")
+    ?.addEventListener("click", hide);
+
+  document.querySelector(".annotation-flex")?.addEventListener("click", hide);
 
   const votes = useSelector((state) => state.annotationvote);
   const votesArray = Object.entries(votes).map((el) => el[1]);
@@ -351,7 +357,7 @@ function PoemViewBody({ poem }) {
                           <button
                             className="annotation-cancel"
                             onClick={(e) => {
-                              // e.preventDefault();
+                              e.preventDefault();
                               setShowEditForm(false);
                               setShowAnnotationButton(false);
                             }}
