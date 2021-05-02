@@ -54,6 +54,7 @@ function Footer() {
       <div className="footer-right-4">
         <div>Not for commercial use</div>
         <div>Poems provided by PoetryDB API</div>
+        <div>Images fetched from Genius</div>
       </div>
     </div>
   );

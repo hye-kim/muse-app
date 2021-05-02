@@ -18,9 +18,7 @@ function Charts() {
     const anchorId = `${currentLocation.substring(
       currentLocation.indexOf("#") + 1
     )}`;
-    console.log(anchorId);
     const anchor = document.getElementById(anchorId);
-    console.log(anchor)
     if (anchor) {
       anchor.scrollIntoView({
         block: "start",

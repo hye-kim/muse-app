@@ -119,7 +119,7 @@ function CommentContainer({ comment }) {
               <div className="user-info">
                 <div className="user-name-mu">
                   <span>{comment.User.username} </span>
-                  <span className="user-mu">193</span>
+                  <span className="user-mu"></span>
                 </div>
               </div>
             </Link>
