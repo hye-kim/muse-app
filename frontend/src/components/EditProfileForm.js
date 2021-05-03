@@ -16,6 +16,7 @@ function EditProfileForm({ user, handleCloseModal }) {
       userId: user.id,
     };
     dispatch(updateUser(payload));
+    handleCloseModal(e)
   };
 
   return (
@@ -31,12 +32,14 @@ function EditProfileForm({ user, handleCloseModal }) {
               type="text"
               value={picture}
               onChange={(e) => setPicture(e.target.value)}
+              placeholder="Add an image URL here"
             />
             <div className="profile-form-label">Change Bio</div>
             <textarea
               rows="5"
               value={about}
               onChange={(e) => setAbout(e.target.value)}
+              placeholder="Do you like reading poems?"
             ></textarea>
             <div className="edit-form-buttons">
               <span>

@@ -37,6 +37,8 @@ function NavSearchbar() {
       setSearchInput("")
   }
 
+  // e.relatedTarget.tagName === "A"
+
   return (
     <div>
       <form className="search">
@@ -46,7 +48,7 @@ function NavSearchbar() {
           onChange={handleSearch}
           onFocus={() => setShowSearchResults(true)}
           onBlur={(e) => {
-              if(e.relatedTarget == null || e.relatedTarget.tagName === "A") {
+              if(e.relatedTarget == null || e.relatedTarget.classList[0] !== "search-poem-card") {
                   hideSearchResults()
               }
           }}
