@@ -19,7 +19,7 @@ function UserProfile() {
   const sessionUser = useSelector((state) => state.session.user);
   const user = useSelector((state) => state.user[userId]);
 
-  document.title = `${user.username} | Muse`;
+  document.title = `${user?.username} | Muse`;
 
   const dispatch = useDispatch();
 
