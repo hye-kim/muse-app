@@ -5,6 +5,11 @@ import "./stylesheets/ProfileContributionTile.css";
 
 function ProfileContributionTile({ contribution, user }) {
   const poem = useSelector((state) => state.poem[contribution.poem_id]);
+
+  if (!poem) {
+    return null
+  }
+
   let timestamp = contribution.updatedAt;
   let timestampTime = new Date(Date.parse(timestamp));
   let formattedTime;
