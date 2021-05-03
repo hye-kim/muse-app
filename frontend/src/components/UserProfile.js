@@ -16,8 +16,8 @@ function UserProfile() {
   const [showComments, setShowComments] = useState(false);
   const [showContributions, setShowContributions] = useState(true);
 
-  const sessionUser = useSelector((state) => state.session.user);
   const user = useSelector((state) => state.user[userId]);
+  const sessionUser = useSelector((state) => state.session.user);
 
   document.title = `${user?.username} | Muse`;
 
@@ -43,6 +43,7 @@ function UserProfile() {
     const closeMenu = () => {
       setShowDropdown(false);
     };
+
 
     document.addEventListener("click", closeMenu);
 
