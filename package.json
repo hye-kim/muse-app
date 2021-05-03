@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/hye-kim/muse-app/issues"
   },
-  "homepage": "https://github.com/hye-kim/muse-app#readme"
+  "homepage": "https://github.com/hye-kim/muse-app#readme",
+  "dependencies": {
+    "react-rte": "^0.16.3"
+  }
 }

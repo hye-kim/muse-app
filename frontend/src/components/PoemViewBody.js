@@ -97,6 +97,7 @@ function PoemViewBody({ poem }) {
   const handleDelete = () => {
     dispatch(destroyAnnotation(annotations[currentAnnotationId].id));
     setShowAnnotation(false);
+    setAnnotation("");
   };
 
   const handleSelection = (e) => {
