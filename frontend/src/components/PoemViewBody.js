@@ -324,19 +324,22 @@ function PoemViewBody({ poem }) {
                         <div className="annotation-body">
                           {annotations[currentAnnotationId].body}
                         </div>
-                        <div className="annotation-edit_and_delete">
-                          <button
-                            onClick={() => {
-                              setShowEditForm(true);
-                              setAnnotation(
-                                annotations[currentAnnotationId].body
-                              );
-                            }}
-                          >
-                            Edit
-                          </button>
-                          <button onClick={handleDelete}>Delete</button>
-                        </div>
+                        {annotations[currentAnnotationId].user_id ===
+                          sessionUser?.id && (
+                          <div className="annotation-edit_and_delete">
+                            <button
+                              onClick={() => {
+                                setShowEditForm(true);
+                                setAnnotation(
+                                  annotations[currentAnnotationId].body
+                                );
+                              }}
+                            >
+                              Edit
+                            </button>
+                            <button onClick={handleDelete}>Delete</button>
+                          </div>
+                        )}
                       </>
                     )}
                     {showEditForm && (
