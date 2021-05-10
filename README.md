@@ -81,5 +81,5 @@ function getHighlightPositions(element) {
 - [ ] Add poet profile pages
 - [ ] Add genres of poems to filter the charts by
 - [ ] Implement a point system where users can earn more points by posting annotations and comments that are upvoted
-- [ ] Add the ability to see all types of submissions by users on their profile page
+- [X] Add the ability to see all types of submissions by users on their profile page
 - [ ] Add the ability for users who have a certain amount of points to add poems
