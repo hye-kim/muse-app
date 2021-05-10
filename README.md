@@ -26,7 +26,7 @@ Check out the [wiki](https://github.com/hye-kim/muse-app/wiki) for more informat
 
 - View poems
 - Add / view / delete comments on poems
-- Add / view / delete/ edit annotations on poem lyrics
+- Add / view / delete / edit annotations on poem lyrics
 - View user profiles and edit your own
 - Search for poems / poets
 - Upvote / downvote comments and annotations
