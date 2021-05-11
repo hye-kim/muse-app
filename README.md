@@ -1,6 +1,6 @@
 # Welcome to Muse!
 
-### **Live Link: [Muse](https://muse.hyekim.me/)**
+### **Live Link: [Muse](https://aa-muse.herokuapp.com/)**
 
 ![Muse Homepage](/readme/homepage.gif)
 
