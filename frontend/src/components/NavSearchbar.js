@@ -34,6 +34,7 @@ function NavSearchbar() {
 
   const hideSearchResults = () => {
       setShowSearchResults(false)
+      setSearchResults([])
       setSearchInput("")
   }
 
