@@ -26,7 +26,7 @@ Check out the [wiki](https://github.com/hye-kim/muse-app/wiki) for more informat
 
 - View poems
 - Add / view / delete comments on poems
-- Add / view / delete/ edit annotations on poem lyrics
+- Add / view / delete / edit annotations on poem lyrics
 - View user profiles and edit your own
 - Search for poems / poets
 - Upvote / downvote comments and annotations
@@ -81,5 +81,5 @@ function getHighlightPositions(element) {
 - [ ] Add poet profile pages
 - [ ] Add genres of poems to filter the charts by
 - [ ] Implement a point system where users can earn more points by posting annotations and comments that are upvoted
-- [ ] Add the ability to see all types of submissions by users on their profile page
+- [X] Add the ability to see all types of submissions by users on their profile page
 - [ ] Add the ability for users who have a certain amount of points to add poems
